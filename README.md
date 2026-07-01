@@ -1,38 +1,30 @@
-# ATLAS Prime 0.7
+# ATLAS Prime 0.8
 
-Dit is de eerste echte React/Vite-basis van ATLAS Prime.
+Volgende fase: van woningmatch naar pilotwaardige propositie.
 
-## Kern van 0.7
+## Nieuwe kernfeature
 
-De nieuwe centrale feature is **ATLAS Match Radar**.
+**ATLAS Biedklaar Paspoort**
 
-Niet alleen:
-- past deze woning wel of niet?
+Dit geeft kopers en makelaars een duidelijker voordeel:
 
-Maar:
-- waarom past deze woning wel of niet?
-- hoeveel zit je erboven of eronder?
-- wat kun je doen om dichterbij te komen?
-- wanneer moet je naar de makelaar?
-- wanneer volgt de final check bij de hypotheekadviseur?
+- De koper ziet of hij klaar is om serieus te reageren.
+- De makelaar ziet of een koper financieel voorbereid is.
+- De hypotheekadviseur blijft verantwoordelijk voor de officiële final check.
 
-## Flow
+## Waarom dit belangrijk is
+
+ATLAS moet niet voelen als een simpele hypotheekcalculator.
+ATLAS moet voelen als de eerste stap in het koopproces:
 
 1. ATLAS-profiel aanmaken.
-2. Financial Identity bekijken.
-3. Match Radar gebruiken.
-4. ATLAS-status delen met makelaar.
-5. Hypotheekadviseur doet definitieve check.
-
-## Lokaal draaien
-
-```bash
-npm install
-npm run dev
-```
+2. Woningmatch bekijken.
+3. Biedklaar Paspoort opbouwen.
+4. Makelaar benaderen.
+5. Final check bij hypotheekadviseur.
 
 ## Vercel
 
 Framework: Vite  
-Build command: `npm run build`  
-Output directory: `dist`
+Build command: npm run build  
+Output directory: dist

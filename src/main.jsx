@@ -2,13 +2,14 @@
 import React, { useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
-  ShieldCheck, Home, Building2, LockKeyhole, UserRound, Search, Radar,
-  ArrowRight, CheckCircle2, AlertTriangle, XCircle, TrendingUp, Wallet,
-  FileCheck2, Gauge, Sparkles, SlidersHorizontal, Send, RefreshCcw, KeyRound
+  ShieldCheck, Home, Building2, LockKeyhole, UserRound, Radar, ArrowRight,
+  TrendingUp, Wallet, FileCheck2, Gauge, Sparkles, SlidersHorizontal, Send,
+  KeyRound, BadgeCheck, AlertTriangle, CheckCircle2, ClipboardCheck, Target,
+  Eye, Unlock, Clock3, MailCheck, Landmark, ScanSearch, FileText
 } from 'lucide-react';
 import './styles.css';
 
-const defaultProfiles = [
+const starterProfiles = [
   {
     id: 'erik',
     name: 'Erik-profiel',
@@ -23,6 +24,9 @@ const defaultProfiles = [
     bkr: 'none',
     docs: 82,
     bonus: 3000,
+    adviseurCheck: 65,
+    proofOfFunds: 82,
+    responseSpeed: 78,
     situation: 'Samen kopend'
   },
   {
@@ -39,29 +43,16 @@ const defaultProfiles = [
     bkr: 'none',
     docs: 58,
     bonus: 0,
-    situation: 'Alleen kopend'
-  },
-  {
-    id: 'bkr',
-    name: 'BKR-review',
-    short: 'KA',
-    label: 'Review nodig',
-    income: 62000,
-    partnerIncome: 0,
-    cash: 12000,
-    studyDebt: 0,
-    loans: 15000,
-    leaseMonthly: 0,
-    bkr: 'serious',
-    docs: 34,
-    bonus: 0,
+    adviseurCheck: 20,
+    proofOfFunds: 45,
+    responseSpeed: 62,
     situation: 'Alleen kopend'
   },
   {
     id: 'high',
     name: 'Hoog inkomen',
     short: 'LV',
-    label: 'Topkandidaat',
+    label: 'Biedklaar',
     income: 115000,
     partnerIncome: 82000,
     cash: 180000,
@@ -71,610 +62,340 @@ const defaultProfiles = [
     bkr: 'none',
     docs: 94,
     bonus: 12000,
+    adviseurCheck: 88,
+    proofOfFunds: 96,
+    responseSpeed: 91,
     situation: 'Samen kopend'
   }
 ];
 
 const homes = [
-  {
-    id: 'h1',
-    title: 'Appartement Hilversum',
-    city: 'Hilversum',
-    price: 285000,
-    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80',
-    agent: 'Gooi Wonen Makelaars',
-    rooms: 3,
-    energy: 'B'
-  },
-  {
-    id: 'h2',
-    title: 'Starterswoning Amersfoort',
-    city: 'Amersfoort',
-    price: 335000,
-    image: 'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&w=1200&q=80',
-    agent: 'De Regio Makelaar',
-    rooms: 4,
-    energy: 'C'
-  },
-  {
-    id: 'h3',
-    title: 'Nieuwbouw Baarn',
-    city: 'Baarn',
-    price: 515000,
-    image: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1200&q=80',
-    agent: 'Buitenplaats Makelaars',
-    rooms: 5,
-    energy: 'A++'
-  },
-  {
-    id: 'h4',
-    title: 'Gezinswoning Eemnes',
-    city: 'Eemnes',
-    price: 675000,
-    image: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=1200&q=80',
-    agent: 'Eemnes & Co',
-    rooms: 5,
-    energy: 'A'
-  },
-  {
-    id: 'h5',
-    title: 'Hoekwoning Bussum',
-    city: 'Bussum',
-    price: 725000,
-    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
-    agent: 'Gooi Wonen Makelaars',
-    rooms: 6,
-    energy: 'B'
-  },
-  {
-    id: 'h6',
-    title: 'Vrijstaand Laren',
-    city: 'Laren',
-    price: 925000,
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-    agent: 'Laren Luxury Living',
-    rooms: 7,
-    energy: 'A'
-  }
+  { id:'h1', title:'Appartement Hilversum', city:'Hilversum', price:285000, agent:'Gooi Wonen Makelaars', rooms:3, energy:'B', image:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1400&q=80' },
+  { id:'h2', title:'Starterswoning Amersfoort', city:'Amersfoort', price:335000, agent:'De Regio Makelaar', rooms:4, energy:'C', image:'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&w=1400&q=80' },
+  { id:'h3', title:'Nieuwbouw Baarn', city:'Baarn', price:515000, agent:'Buitenplaats Makelaars', rooms:5, energy:'A++', image:'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1400&q=80' },
+  { id:'h4', title:'Gezinswoning Eemnes', city:'Eemnes', price:675000, agent:'Eemnes & Co', rooms:5, energy:'A', image:'https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=1400&q=80' },
+  { id:'h5', title:'Hoekwoning Bussum', city:'Bussum', price:725000, agent:'Gooi Wonen Makelaars', rooms:6, energy:'B', image:'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=80' },
+  { id:'h6', title:'Vrijstaand Laren', city:'Laren', price:925000, agent:'Laren Luxury Living', rooms:7, energy:'A', image:'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=80' }
 ];
 
-function euro(n) {
-  if (!n || n <= 0) return 'Review';
-  return '€ ' + Math.round(n).toLocaleString('nl-NL');
-}
-function shortEuro(n) {
-  if (!n || n <= 0) return 'Review';
-  return '€ ' + Math.round(n / 1000) + 'k';
-}
+function euro(n){ if(!n || n<=0) return 'Review'; return '€ ' + Math.round(n).toLocaleString('nl-NL'); }
+function shortEuro(n){ if(!n || n<=0) return 'Review'; return '€ ' + Math.round(n/1000) + 'k'; }
 
-function calculateProfile(profile) {
-  const income = Number(profile.income || 0) + Number(profile.partnerIncome || 0);
-  const base = income * 4.45;
-  const cashEffect = Math.min(Number(profile.cash || 0), 250000) * 0.82;
-  const bonusEffect = Number(profile.bonus || 0) * 2.4;
-  const debtPenalty =
-    Number(profile.studyDebt || 0) * 0.55 +
-    Number(profile.loans || 0) * 1.15 +
-    Number(profile.leaseMonthly || 0) * 180;
-  const bkrPenalty = profile.bkr === 'serious' ? 999999 : profile.bkr === 'minor' ? 65000 : 0;
-  const docsPenalty = profile.docs < 45 ? 60000 : profile.docs < 70 ? 25000 : 0;
-  const budget = Math.max(0, base + cashEffect + bonusEffect - debtPenalty - bkrPenalty - docsPenalty);
+function calcProfile(p){
+  const income = Number(p.income||0)+Number(p.partnerIncome||0);
+  const base = income*4.45;
+  const cashEffect = Math.min(Number(p.cash||0),250000)*0.82;
+  const bonusEffect = Number(p.bonus||0)*2.4;
+  const debtPenalty = Number(p.studyDebt||0)*0.55 + Number(p.loans||0)*1.15 + Number(p.leaseMonthly||0)*180;
+  const docsPenalty = p.docs < 45 ? 60000 : p.docs < 70 ? 25000 : 0;
+  const budget = Math.max(0, base + cashEffect + bonusEffect - debtPenalty - docsPenalty);
 
   let score = 48;
   score += income > 140000 ? 23 : income > 90000 ? 17 : income > 55000 ? 8 : -8;
-  score += profile.cash > 100000 ? 16 : profile.cash > 50000 ? 11 : profile.cash > 15000 ? 5 : -6;
-  score += profile.docs > 85 ? 8 : profile.docs > 65 ? 3 : -8;
-  score -= profile.studyDebt > 30000 ? 9 : profile.studyDebt > 0 ? 4 : 0;
-  score -= profile.loans > 10000 ? 7 : 0;
-  score -= profile.leaseMonthly > 0 ? 8 : 0;
-  score -= profile.bkr === 'serious' ? 45 : profile.bkr === 'minor' ? 16 : 0;
+  score += p.cash > 100000 ? 16 : p.cash > 50000 ? 11 : p.cash > 15000 ? 5 : -6;
+  score += p.docs > 85 ? 8 : p.docs > 65 ? 3 : -8;
+  score -= p.studyDebt > 30000 ? 9 : p.studyDebt > 0 ? 4 : 0;
+  score -= p.loans > 10000 ? 7 : 0;
+  score -= p.leaseMonthly > 0 ? 8 : 0;
   score = Math.max(0, Math.min(98, Math.round(score)));
-
   const level = score >= 76 && budget > 0 ? 'green' : score >= 48 && budget > 0 ? 'yellow' : 'red';
   const status = level === 'green' ? 'Verified Buyer' : level === 'yellow' ? 'Verified under conditions' : 'Review required';
-
-  return { income, budget, score, level, status };
+  return {income,budget,score,level,status};
 }
 
-function matchHome(profile, home) {
-  const p = calculateProfile(profile);
-  if (p.budget <= 0) {
-    return {
-      level: 'red',
-      score: 12,
-      label: 'Review nodig',
-      gap: home.price,
-      verdict: 'Eerst financiële review nodig voordat ATLAS een woningmatch toont.'
-    };
-  }
-  const gap = home.price - p.budget;
-  let score = Math.round(100 - Math.max(0, gap / home.price) * 130);
-  if (gap <= 0) score = Math.min(98, 86 + Math.round((Math.abs(gap) / home.price) * 12));
+function matchHome(profile, home){
+  const p = calcProfile(profile);
+  const gap = Math.max(0, home.price - p.budget);
+  let score = p.budget <= 0 ? 8 : Math.round(100 - Math.max(0, gap/home.price)*130);
+  if(gap <= 0) score = Math.min(98, 86 + Math.round((Math.abs(home.price-p.budget)/home.price)*12));
   score = Math.max(8, Math.min(98, score));
-
   const level = score >= 82 ? 'green' : score >= 62 ? 'yellow' : 'red';
   const label = level === 'green' ? 'Past bij profiel' : level === 'yellow' ? 'Onder voorwaarden' : 'Niet realistisch';
-  const verdict = level === 'green'
-    ? 'Deze woning past binnen de huidige ATLAS-bandbreedte.'
-    : level === 'yellow'
-      ? 'Deze woning is mogelijk haalbaar, maar vraagt om voorwaarden of optimalisatie.'
-      : 'Deze woning ligt buiten de huidige ATLAS-bandbreedte. ATLAS toont wat er nodig is om dichterbij te komen.';
-
-  return { level, score, label, gap: Math.max(0, gap), verdict };
+  return {score,level,label,gap};
 }
 
-function improvementPlan(profile, home) {
-  const current = calculateProfile(profile);
+function readinessPassport(profile, home){
+  const profileCalc = calcProfile(profile);
+  const match = matchHome(profile, home);
+  const financial = match.score;
+  const docs = Number(profile.docs || 0);
+  const proof = Number(profile.proofOfFunds || 0);
+  const adviser = Number(profile.adviseurCheck || 0);
+  const speed = Number(profile.responseSpeed || 0);
+
+  const total = Math.round(financial*0.35 + docs*0.22 + proof*0.18 + adviser*0.15 + speed*0.10);
+  const level = total >= 82 ? 'green' : total >= 62 ? 'yellow' : 'red';
+  const label = level === 'green' ? 'Biedklaar' : level === 'yellow' ? 'Bijna biedklaar' : 'Nog niet biedklaar';
+
+  const blockers = [];
+  if(match.level === 'red') blockers.push('Woning ligt buiten huidige ATLAS-bandbreedte');
+  if(profile.docs < 75) blockers.push('Documenten zijn nog niet compleet genoeg');
+  if(profile.proofOfFunds < 70) blockers.push('Eigen middelen nog onvoldoende onderbouwd');
+  if(profile.adviseurCheck < 60) blockers.push('Nog geen recente adviseurcheck');
+  if(profile.leaseMonthly > 0) blockers.push('Private lease verlaagt koopruimte');
+
+  const nextBest = blockers[0] || 'ATLAS-status delen met makelaar en final check plannen';
+
+  return {total,level,label,financial,docs,proof,adviser,speed,blockers,nextBest,profileCalc,match};
+}
+
+function improvementPlan(profile, home){
+  const current = calcProfile(profile);
   const match = matchHome(profile, home);
   const items = [];
-
-  if (profile.leaseMonthly > 0) {
-    const impact = profile.leaseMonthly * 180;
-    items.push({
-      title: 'Private lease beëindigen',
-      impact,
-      detail: `Kan indicatief ${shortEuro(impact)} extra ruimte geven.`,
-      type: 'lease'
-    });
-  }
-  if (profile.studyDebt > 0) {
-    const payoff = Math.min(profile.studyDebt, 15000);
-    const impact = Math.round(payoff * 0.55);
-    items.push({
-      title: `€${payoff.toLocaleString('nl-NL')} studieschuld aflossen`,
-      impact,
-      detail: `Verlaagt verplichtingen en verbetert je ATLAS-score.`,
-      type: 'study'
-    });
-  }
-  if (profile.cash < 75000) {
-    const extraCash = 15000;
-    const impact = Math.round(extraCash * 0.82);
-    items.push({
-      title: '€15.000 extra eigen middelen',
-      impact,
-      detail: 'Kan via sparen, schenking of verkoop eigen bezit.',
-      type: 'cash'
-    });
-  }
-  if (profile.partnerIncome === 0) {
-    const impact = Math.round(45000 * 4.45);
-    items.push({
-      title: 'Samen kopen met partner',
-      impact,
-      detail: 'Voorbeeld: partnerinkomen van €45.000 meenemen.',
-      type: 'partner'
-    });
-  }
-  if (profile.docs < 85) {
-    const impact = profile.docs < 45 ? 60000 : 25000;
-    items.push({
-      title: 'Documenten compleet maken',
-      impact,
-      detail: 'Loonstrook, werkgeversverklaring, bankoverzicht en ID klaarzetten.',
-      type: 'docs'
-    });
-  }
-  if (profile.bkr === 'serious') {
-    items.unshift({
-      title: 'BKR-review oplossen',
-      impact: 0,
-      detail: 'Geen extra ruimte totdat dit inhoudelijk is beoordeeld of hersteld.',
-      type: 'bkr',
-      blocker: true
-    });
-  }
-
-  const topItems = items.slice(0, 3);
-  const potential = current.budget + topItems.reduce((sum, item) => sum + (item.blocker ? 0 : item.impact), 0);
-  return { current: current.budget, target: home.price, gap: match.gap, items: topItems, potential };
+  if(profile.leaseMonthly > 0) items.push({title:'Private lease beëindigen', impact:profile.leaseMonthly*180, detail:'Verlaagt maandverplichting en vergroot indicatieve koopruimte.'});
+  if(profile.studyDebt > 0){ const payoff=Math.min(profile.studyDebt,15000); items.push({title:`${euro(payoff)} studieschuld aflossen`, impact:Math.round(payoff*0.55), detail:'Verbetert je financiële ruimte en risico-inschatting.'});}
+  if(profile.cash < 75000) items.push({title:'€15.000 extra eigen middelen', impact:12300, detail:'Bijvoorbeeld via sparen, schenking of verkoop eigen bezit.'});
+  if(profile.partnerIncome === 0) items.push({title:'Samen kopen met partner', impact:200250, detail:'Voorbeeld op basis van €45.000 extra inkomen.'});
+  if(profile.docs < 85) items.push({title:'Documenten compleet maken', impact:profile.docs < 45 ? 60000 : 25000, detail:'Loonstrook, werkgeversverklaring, bankoverzicht en ID klaarzetten.'});
+  const top = items.slice(0,3);
+  return {current:current.budget,target:home.price,gap:match.gap,items:top,potential:current.budget+top.reduce((s,i)=>s+i.impact,0)};
 }
 
-function Badge({ level, children }) {
-  return <span className={`badge ${level}`}>{children}</span>;
-}
+function Badge({level,children}){return <span className={`badge ${level}`}>{children}</span>;}
+function Progress({value, level='green'}){return <div className="progress"><span className={level} style={{width:`${Math.max(0,Math.min(100,value))}%`}}/></div>;}
 
-function Nav({ page, setPage }) {
-  const items = [
-    ['home', Sparkles, 'Start'],
-    ['intake', UserRound, 'Nieuwe koper'],
-    ['identity', ShieldCheck, 'Identity'],
-    ['radar', Radar, 'Match Radar'],
-    ['agent', Building2, 'Makelaar'],
-    ['funda', LockKeyhole, 'Funda-laag'],
-    ['studio', SlidersHorizontal, 'Simulatie']
-  ];
-  return <aside className="sidebar">
-    <div className="brand">
-      <div className="brandmark">A</div>
-      <div><div className="logo">ATLAS</div><div className="tagline">Prime 0.7</div></div>
-    </div>
-    <nav>
-      {items.map(([id, Icon, label]) => (
-        <button key={id} className={page === id ? 'active' : ''} onClick={() => setPage(id)}>
-          <Icon size={18}/><span>{label}</span>
-        </button>
-      ))}
-    </nav>
-    <div className="side-card">
-      <b>ATLAS Match Radar</b>
-      <p>Niet alleen “kan wel/niet”, maar: wat moet er gebeuren om dichterbij te komen?</p>
-    </div>
-  </aside>;
-}
+function App(){
+  const [page,setPage] = useState('home');
+  const [profiles,setProfiles] = useState(starterProfiles);
+  const [activeId,setActiveId] = useState('erik');
+  const [homeId,setHomeId] = useState('h4');
+  const [leads,setLeads] = useState([]);
+  const profile = profiles.find(p=>p.id===activeId) || profiles[0];
+  const home = homes.find(h=>h.id===homeId) || homes[0];
+  const result = useMemo(()=>calcProfile(profile),[profile]);
+  const pass = useMemo(()=>readinessPassport(profile,home),[profile,home]);
+  const plan = useMemo(()=>improvementPlan(profile,home),[profile,home]);
 
-function ProfileTabs({ profiles, activeId, setActiveId }) {
-  return <div className="profile-tabs">
-    {profiles.map(profile => {
-      const r = calculateProfile(profile);
-      return <button key={profile.id} className={activeId === profile.id ? 'active' : ''} onClick={() => setActiveId(profile.id)}>
-        <span className="avatar">{profile.short}</span>
-        <span><b>{profile.name}</b><small>{profile.label}</small></span>
-        <Badge level={r.level}>{shortEuro(r.budget)}</Badge>
-      </button>;
-    })}
-  </div>;
-}
-
-function App() {
-  const [page, setPage] = useState('home');
-  const [profiles, setProfiles] = useState(defaultProfiles);
-  const [activeId, setActiveId] = useState('erik');
-  const [selectedHomeId, setSelectedHomeId] = useState('h4');
-  const [leads, setLeads] = useState([]);
-  const activeProfile = profiles.find(p => p.id === activeId) || profiles[0];
-  const activeHome = homes.find(h => h.id === selectedHomeId) || homes[0];
-  const profileResult = useMemo(() => calculateProfile(activeProfile), [activeProfile]);
-  const selectedMatch = useMemo(() => matchHome(activeProfile, activeHome), [activeProfile, activeHome]);
-  const plan = useMemo(() => improvementPlan(activeProfile, activeHome), [activeProfile, activeHome]);
-
-  function updateProfile(field, value) {
-    setProfiles(items => items.map(p => p.id === activeId ? {
-      ...p,
-      [field]: ['income','partnerIncome','cash','studyDebt','loans','leaseMonthly','bonus','docs'].includes(field) ? Number(value || 0) : value
-    } : p));
+  function updateProfile(field,value){
+    const numeric = ['income','partnerIncome','cash','studyDebt','loans','leaseMonthly','bonus','docs','adviseurCheck','proofOfFunds','responseSpeed'].includes(field);
+    setProfiles(items => items.map(p => p.id===activeId ? {...p,[field]: numeric ? Number(value||0) : value} : p));
   }
 
-  function createBuyer(data) {
+  function createBuyer(data){
     const id = 'custom-' + Date.now();
-    const newProfile = {
-      id,
-      short: data.name.split(' ').map(x => x[0]).join('').slice(0,2).toUpperCase() || 'NK',
-      label: 'Nieuw aangemaakt',
-      situation: data.partnerIncome > 0 ? 'Samen kopend' : 'Alleen kopend',
-      ...data
-    };
-    setProfiles(items => [newProfile, ...items]);
+    const newProfile = {...data,id,short:(data.name||'NK').split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase(),label:'Nieuw profiel',situation:data.partnerIncome>0?'Samen kopend':'Alleen kopend'};
+    setProfiles(items=>[newProfile,...items]);
     setActiveId(id);
-    setPage('identity');
+    setPage('passport');
   }
 
-  function shareWithAgent(home) {
-    const m = matchHome(activeProfile, home);
-    setLeads(items => [{
+  function shareLead(){
+    const lead = {
       id: Date.now(),
-      buyer: activeProfile.name,
-      avatar: activeProfile.short,
+      buyer: profile.name,
+      short: profile.short,
       home: home.title,
       city: home.city,
-      price: home.price,
       agent: home.agent,
-      status: profileResult.status,
-      level: profileResult.level,
-      match: m.label,
-      matchLevel: m.level,
-      score: m.score,
-      budget: profileResult.budget
-    }, ...items]);
+      price: home.price,
+      readiness: pass.total,
+      readinessLevel: pass.level,
+      match: pass.match.label,
+      matchLevel: pass.match.level,
+      status: result.status,
+      budget: result.budget,
+      nextBest: pass.nextBest
+    };
+    setLeads(l=>[lead,...l]);
     setPage('agent');
   }
 
   return <div className="app">
-    <Nav page={page} setPage={setPage}/>
+    <Sidebar page={page} setPage={setPage}/>
     <main>
-      <ProfileTabs profiles={profiles} activeId={activeId} setActiveId={setActiveId}/>
-      {page === 'home' && <HomePage setPage={setPage} profile={activeProfile} result={profileResult}/>}
-      {page === 'intake' && <IntakePage createBuyer={createBuyer}/>}
-      {page === 'identity' && <IdentityPage profile={activeProfile} result={profileResult} setPage={setPage}/>}
-      {page === 'radar' && <RadarPage profile={activeProfile} result={profileResult} homes={homes} selectedHome={activeHome} setSelectedHomeId={setSelectedHomeId} match={selectedMatch} plan={plan} shareWithAgent={shareWithAgent}/>}
-      {page === 'agent' && <AgentPage leads={leads}/>}
-      {page === 'funda' && <FundaPage setPage={setPage}/>}
-      {page === 'studio' && <StudioPage profile={activeProfile} result={profileResult} updateProfile={updateProfile}/>}
+      <ProfileStrip profiles={profiles} activeId={activeId} setActiveId={setActiveId}/>
+      {page==='home' && <HomePage setPage={setPage} profile={profile} result={result} pass={pass}/>}
+      {page==='intake' && <IntakePage createBuyer={createBuyer}/>}
+      {page==='passport' && <PassportPage profile={profile} home={home} result={result} pass={pass} setPage={setPage}/>}
+      {page==='radar' && <RadarPage profile={profile} home={home} homes={homes} setHomeId={setHomeId} pass={pass} plan={plan} shareLead={shareLead}/>}
+      {page==='agent' && <AgentPage leads={leads} setPage={setPage}/>}
+      {page==='funda' && <FundaLayer setPage={setPage}/>}
+      {page==='studio' && <StudioPage profile={profile} result={result} pass={pass} updateProfile={updateProfile}/>}
     </main>
-  </div>;
+  </div>
 }
 
-function HomePage({ setPage, profile, result }) {
+function Sidebar({page,setPage}){
+  const items = [
+    ['home',Sparkles,'Start'],
+    ['intake',UserRound,'Nieuwe koper'],
+    ['passport',ClipboardCheck,'Biedklaar Paspoort'],
+    ['radar',Radar,'Match Radar'],
+    ['agent',Building2,'Makelaar'],
+    ['funda',LockKeyhole,'Funda-laag'],
+    ['studio',SlidersHorizontal,'Simulatie']
+  ];
+  return <aside className="sidebar">
+    <div className="brand"><div className="brandmark">A</div><div><div className="logo">ATLAS</div><div className="tagline">Prime 0.8</div></div></div>
+    <nav>{items.map(([id,Icon,label])=><button key={id} onClick={()=>setPage(id)} className={page===id?'active':''}><Icon size={18}/>{label}</button>)}</nav>
+    <div className="side-card"><b>Volgende fase</b><p>Van woningmatch naar biedklaarheid: is deze koper klaar om serieus contact op te nemen?</p></div>
+  </aside>
+}
+
+function ProfileStrip({profiles,activeId,setActiveId}){
+  return <div className="profile-strip">{profiles.map(p=>{const r=calcProfile(p);return <button key={p.id} className={p.id===activeId?'active':''} onClick={()=>setActiveId(p.id)}><span className="avatar">{p.short}</span><span><b>{p.name}</b><small>{p.label}</small></span><Badge level={r.level}>{shortEuro(r.budget)}</Badge></button>})}</div>
+}
+
+function HomePage({setPage,profile,result,pass}){
   return <section className="hero">
     <div className="hero-copy">
       <Badge level="green">A Trusted Financial Identity for Homebuyers</Badge>
-      <h1>Weten welke woning haalbaar is, vóór je verliefd wordt.</h1>
-      <p>ATLAS is stap één in het koopproces. Maak een financieel profiel, zie je woningmatch en kom sterker binnen bij de makelaar. De hypotheekadviseur doet daarna de officiële final check.</p>
-      <div className="flow">
-        <div><span>1</span><b>ATLAS-profiel</b><small>Richting en bandbreedte</small></div>
-        <div><span>2</span><b>Match Radar</b><small>Welke woningen passen?</small></div>
-        <div><span>3</span><b>Makelaar</b><small>Gerichter contact</small></div>
-        <div><span>4</span><b>Adviseur</b><small>Definitieve check</small></div>
-      </div>
-      <div className="actions">
-        <button onClick={() => setPage('intake')}>Nieuwe koper starten <ArrowRight size={17}/></button>
-        <button className="secondary" onClick={() => setPage('radar')}>Open Match Radar</button>
+      <h1>Niet alleen weten wat je kunt kopen. Weten of je biedklaar bent.</h1>
+      <p>ATLAS wordt de eerste stap vóór Funda-reactie, bezichtiging en hypotheekadvies. De koper ziet zijn match, de makelaar ziet of iemand serieus voorbereid is.</p>
+      <div className="actions"><button onClick={()=>setPage('passport')}>Open Biedklaar Paspoort <ArrowRight size={17}/></button><button className="secondary" onClick={()=>setPage('radar')}>Bekijk Match Radar</button></div>
+      <div className="value-grid">
+        <div><Target/><b>Doelgericht zoeken</b><small>Geen valse hoop op woningen buiten bereik.</small></div>
+        <div><BadgeCheck/><b>Sterker bij makelaar</b><small>Laat zien dat je voorbereid bent.</small></div>
+        <div><Landmark/><b>Adviseur blijft final check</b><small>ATLAS versnelt, adviseur bevestigt.</small></div>
       </div>
     </div>
-    <div className="identity-card">
-      <div className="card-head">
-        <span className="avatar large">{profile.short}</span>
-        <div>
-          <div className="eyebrow">Actieve Financial Identity</div>
-          <h2>{profile.name}</h2>
-        </div>
+    <div className="dark-card">
+      <div className="card-head"><span className="avatar large">{profile.short}</span><div><div className="eyebrow">Actieve koper</div><h2>{profile.name}</h2></div></div>
+      <div className="split">
+        <div><div className="giant">{pass.total}%</div><div className="eyebrow">Biedklaar score</div></div>
+        <Badge level={pass.level}>{pass.label}</Badge>
       </div>
-      <Badge level={result.level}>{result.status}</Badge>
-      <div className="giant">{shortEuro(result.budget)}</div>
-      <div className="eyebrow">ATLAS-bandbreedte</div>
-      <div className="scorebar"><span style={{width: `${result.score}%`}} /></div>
-      <p>Score {result.score}/100. Dit is geen hypotheekadvies, maar een realtime zoek- en matchlaag vóór het officiële traject.</p>
+      <Progress value={pass.total} level={pass.level}/>
+      <p>Bandbreedte {shortEuro(result.budget)} · status {result.status}. ATLAS geeft realtime richting vóór het officiële hypotheektraject.</p>
     </div>
-  </section>;
+  </section>
 }
 
-function IntakePage({ createBuyer }) {
-  const [form, setForm] = useState({
-    name: 'Nieuwe koper',
-    income: 52000,
-    partnerIncome: 0,
-    cash: 25000,
-    studyDebt: 0,
-    loans: 0,
-    leaseMonthly: 0,
-    bkr: 'none',
-    docs: 65,
-    bonus: 0
-  });
-  const result = calculateProfile(form);
-  function set(field, value) {
-    setForm(f => ({...f, [field]: ['income','partnerIncome','cash','studyDebt','loans','leaseMonthly','docs','bonus'].includes(field) ? Number(value || 0) : value}));
-  }
+function IntakePage({createBuyer}){
+  const [form,setForm] = useState({name:'Nieuwe koper',income:52000,partnerIncome:0,cash:25000,bonus:0,studyDebt:0,loans:0,leaseMonthly:0,docs:62,adviseurCheck:20,proofOfFunds:45,responseSpeed:60});
+  const r=calcProfile(form);
+  function set(field,value){setForm(f=>({...f,[field]:field==='name'?value:Number(value||0)}))}
   return <section>
-    <div className="page-head">
-      <div>
-        <span className="eyebrow">Nieuwe koper</span>
-        <h2>Maak vanaf nul een ATLAS-profiel.</h2>
-        <p>De koper krijgt direct richting: wat lijkt haalbaar, welke risico’s spelen mee en welke woningen passen beter?</p>
-      </div>
-      <Badge level={result.level}>{result.status}</Badge>
-    </div>
+    <Header eyebrow="Nieuwe koper" title="Maak een profiel dat meteen laat zien of iemand biedklaar is." text="Niet alleen inkomen invullen, maar ook documentstatus, bewijs eigen middelen en adviseurcheck."/>
     <div className="two">
       <div className="panel form">
         {[
-          ['name','Naam','text'],
-          ['income','Bruto jaarinkomen koper','number'],
-          ['partnerIncome','Bruto jaarinkomen partner','number'],
-          ['cash','Eigen middelen','number'],
-          ['bonus','Jaarlijkse bonus','number'],
-          ['studyDebt','Studieschuld','number'],
-          ['loans','Overige leningen','number'],
-          ['leaseMonthly','Private lease per maand','number']
-        ].map(([id,label,type]) => <label key={id}>{label}<input type={type} value={form[id]} onChange={e => set(id, e.target.value)}/></label>)}
-        <label>BKR-signaal<select value={form.bkr} onChange={e => set('bkr', e.target.value)}><option value="none">Geen</option><option value="minor">Licht/herstelbaar</option><option value="serious">Serieus</option></select></label>
-        <label>Documentstatus ({form.docs}%)<input type="range" min="0" max="100" value={form.docs} onChange={e => set('docs', e.target.value)}/></label>
-        <button onClick={() => createBuyer(form)}>Maak ATLAS Identity</button>
+          ['name','Naam','text'],['income','Bruto jaarinkomen koper','number'],['partnerIncome','Bruto jaarinkomen partner','number'],['cash','Eigen middelen','number'],['bonus','Jaarlijkse bonus','number'],['studyDebt','Studieschuld','number'],['loans','Overige leningen','number'],['leaseMonthly','Private lease per maand','number']
+        ].map(([id,label,type])=><label key={id}>{label}<input type={type} value={form[id]} onChange={e=>set(id,e.target.value)}/></label>)}
+        <Range label="Documenten compleet" value={form.docs} setValue={v=>set('docs',v)}/>
+        <Range label="Adviseurcheck" value={form.adviseurCheck} setValue={v=>set('adviseurCheck',v)}/>
+        <Range label="Eigen middelen onderbouwd" value={form.proofOfFunds} setValue={v=>set('proofOfFunds',v)}/>
+        <Range label="Reactiesnelheid" value={form.responseSpeed} setValue={v=>set('responseSpeed',v)}/>
+        <button onClick={()=>createBuyer(form)}>Maak ATLAS-profiel</button>
       </div>
       <div className="panel sticky">
-        <h3>Live Financial Identity</h3>
-        <Badge level={result.level}>{result.status}</Badge>
-        <div className="big-number">{shortEuro(result.budget)}</div>
-        <div className="scorebar light"><span style={{width: `${result.score}%`}} /></div>
-        <p>Score {result.score}/100. Deze indicatie helpt bij zoeken en prioriteren, maar vervangt de hypotheekadviseur niet.</p>
-        <div className="mini-checks">
-          <div><Wallet/> <span>Eigen middelen</span><b>{euro(form.cash)}</b></div>
-          <div><FileCheck2/> <span>Documentstatus</span><b>{form.docs}%</b></div>
-          <div><Gauge/> <span>Kooprichting</span><b>{shortEuro(result.budget)}</b></div>
-        </div>
+        <h3>Live indicatie</h3>
+        <div className="big-number">{shortEuro(r.budget)}</div>
+        <Progress value={r.score} level={r.level}/>
+        <p>Financial Identity score {r.score}/100. Hierna kan ATLAS per woning de biedklaarheid bepalen.</p>
       </div>
     </div>
-  </section>;
+  </section>
 }
 
-function IdentityPage({ profile, result, setPage }) {
-  const items = [
-    ['Huishoudinkomen', euro(result.income), result.income > 90000 ? 'green' : result.income > 55000 ? 'yellow' : 'red'],
-    ['Eigen middelen', euro(profile.cash), profile.cash > 50000 ? 'green' : profile.cash > 15000 ? 'yellow' : 'red'],
-    ['Documentstatus', profile.docs + '%', profile.docs > 85 ? 'green' : profile.docs > 60 ? 'yellow' : 'red'],
-    ['BKR-signaal', profile.bkr === 'none' ? 'Geen' : profile.bkr === 'minor' ? 'Licht' : 'Review nodig', profile.bkr === 'none' ? 'green' : profile.bkr === 'minor' ? 'yellow' : 'red']
+function PassportPage({profile,home,result,pass,setPage}){
+  const rows = [
+    ['Financiële match',pass.financial,pass.match.level,ScanSearch],
+    ['Documenten compleet',pass.docs,pass.docs>=80?'green':pass.docs>=60?'yellow':'red',FileCheck2],
+    ['Eigen middelen bewijs',pass.proof,pass.proof>=80?'green':pass.proof>=60?'yellow':'red',Wallet],
+    ['Adviseurcheck',pass.adviser,pass.adviser>=80?'green':pass.adviser>=60?'yellow':'red',Landmark],
+    ['Reactiesnelheid',pass.speed,pass.speed>=80?'green':pass.speed>=60?'yellow':'red',Clock3],
   ];
   return <section>
-    <div className="page-head">
-      <div>
-        <span className="eyebrow">ATLAS Identity</span>
-        <h2>{profile.name}</h2>
-        <p>Dit profiel is bedoeld om doelgericht te zoeken en gecontroleerd te delen met een makelaar.</p>
+    <Header eyebrow="ATLAS Biedklaar Paspoort" title="Dit is het serieuze koperbewijs richting makelaar." text="De koper deelt geen volledig financieel dossier, maar een compacte status: match, documenten, onderbouwing en volgende stap."/>
+    <div className="passport-layout">
+      <div className="passport-card">
+        <div className="passport-top"><span className="avatar large">{profile.short}</span><div><div className="eyebrow">ATLAS Passport</div><h2>{profile.name}</h2><p>{profile.situation}</p></div></div>
+        <div className="passport-score"><div>{pass.total}%</div><Badge level={pass.level}>{pass.label}</Badge></div>
+        <Progress value={pass.total} level={pass.level}/>
+        <div className="passport-meta">
+          <span>Bandbreedte <b>{shortEuro(result.budget)}</b></span>
+          <span>Woning <b>{shortEuro(home.price)}</b></span>
+          <span>Match <b>{pass.match.label}</b></span>
+        </div>
       </div>
-      <button onClick={() => setPage('radar')}>Open Match Radar</button>
-    </div>
-    <div className="metric-grid">
-      <Metric label="Status" value={result.status}/>
-      <Metric label="Score" value={`${result.score}/100`}/>
-      <Metric label="Bandbreedte" value={shortEuro(result.budget)}/>
-      <Metric label="Final check" value="Adviseur"/>
-    </div>
-    <div className="panel">
-      <h3>Wat deelt de koper met de makelaar?</h3>
-      <div className="factor-grid">
-        {items.map(([label,value,level]) => <div className="factor" key={label}><span>{label}</span><Badge level={level}>{value}</Badge></div>)}
+      <div className="panel">
+        <h3>Waarom is dit handig?</h3>
+        <p>Een hypotheekadviseur geeft de officiële check. ATLAS helpt daarvóór: tijdens het zoeken, reageren en selecteren. De koper weet wat slim is. De makelaar ziet wie serieus is.</p>
+        <div className="passport-factors">{rows.map(([label,value,level,Icon])=><div key={label} className="factor"><Icon size={20}/><span>{label}</span><b>{value}%</b><Progress value={value} level={level}/></div>)}</div>
+        <h3>Volgende beste stap</h3>
+        <div className="next-step"><AlertTriangle/><span>{pass.nextBest}</span></div>
+        <div className="actions"><button onClick={()=>setPage('radar')}>Bekijk woningmatch</button><button className="secondary" onClick={()=>setPage('agent')}>Naar makelaar</button></div>
       </div>
     </div>
-  </section>;
+  </section>
 }
 
-function Metric({ label, value }) {
-  return <div className="metric-card"><div className="eyebrow">{label}</div><div>{value}</div></div>;
-}
-
-function RadarPage({ homes, selectedHome, setSelectedHomeId, match, plan, profile, result, shareWithAgent }) {
+function RadarPage({profile,home,homes,setHomeId,pass,plan,shareLead}){
   return <section>
-    <div className="page-head">
-      <div>
-        <span className="eyebrow">ATLAS Match Radar</span>
-        <h2>Niet alleen óf het past, maar hoe je dichterbij komt.</h2>
-        <p>Dit is de functie die ATLAS nuttiger maakt dan “alleen even naar een hypotheekadviseur”: realtime zoeken, vergelijken en optimaliseren per woning.</p>
-      </div>
-      <Badge level={match.level}>{match.label}</Badge>
-    </div>
+    <Header eyebrow="ATLAS Match Radar" title="Per woning zien wat past, wat schuurt en wat je kunt verbeteren." text="Dit is de realtime laag die je niet krijgt door alleen één keer met een hypotheekadviseur te praten."/>
     <div className="radar-layout">
-      <div className="home-list">
-        {homes.map(home => {
-          const m = matchHome(profile, home);
-          return <button key={home.id} className={home.id === selectedHome.id ? 'home-card active' : 'home-card'} onClick={() => setSelectedHomeId(home.id)}>
-            <img src={home.image} alt="woning"/>
-            <div>
-              <Badge level={m.level}>{m.score}% match</Badge>
-              <h3>{home.title}</h3>
-              <p>{home.city} · {euro(home.price)}</p>
-            </div>
-          </button>;
-        })}
-      </div>
-      <div className="radar-panel">
-        <img src={selectedHome.image} alt="woning" className="hero-home"/>
-        <div className="radar-score">
-          <div>
-            <div className="eyebrow">ATLAS Match Score</div>
-            <div className={`score ${match.level}`}>{match.score}%</div>
-          </div>
-          <Badge level={match.level}>{match.label}</Badge>
-        </div>
-        <h2>{selectedHome.title}</h2>
-        <p>{selectedHome.city} · {euro(selectedHome.price)} · {selectedHome.rooms} kamers · label {selectedHome.energy}</p>
-        <p>{match.verdict}</p>
-
-        <div className="gap-card">
-          <div><span>Huidige bandbreedte</span><b>{shortEuro(plan.current)}</b></div>
-          <div><span>Woningprijs</span><b>{shortEuro(plan.target)}</b></div>
-          <div><span>Verschil</span><b>{plan.gap <= 0 ? 'Binnen bereik' : shortEuro(plan.gap)}</b></div>
-        </div>
-
-        <h3>Hoe maak je deze woning haalbaarder?</h3>
-        <div className="plan">
-          {plan.items.length === 0 && <p>Deze woning past al goed binnen het huidige profiel. Volgende stap: makelaar benaderen en final check bij hypotheekadviseur.</p>}
-          {plan.items.map(item => <div className={item.blocker ? 'plan-item blocker' : 'plan-item'} key={item.title}>
-            <div>
-              <b>{item.title}</b>
-              <p>{item.detail}</p>
-            </div>
-            <span>{item.blocker ? 'Blokker' : '+' + shortEuro(item.impact)}</span>
-          </div>)}
-        </div>
-
-        <div className="potential">
-          <TrendingUp/>
-          <div>
-            <span>Potentiële bandbreedte na acties</span>
-            <b>{shortEuro(plan.potential)}</b>
-          </div>
-        </div>
-
-        <div className="actions">
-          <button onClick={() => shareWithAgent(selectedHome)}><Send size={17}/> Deel ATLAS-status met makelaar</button>
-          <button className="secondary">Plan final check adviseur</button>
-        </div>
+      <div className="home-list">{homes.map(h=>{const p=readinessPassport(profile,h);return <button key={h.id} className={h.id===home.id?'home active':'home'} onClick={()=>setHomeId(h.id)}><img src={h.image}/><div><Badge level={p.level}>{p.total}% biedklaar</Badge><h3>{h.title}</h3><p>{h.city} · {euro(h.price)}</p></div></button>})}</div>
+      <div className="panel radar-panel">
+        <img src={home.image} className="hero-img"/>
+        <div className="radar-head"><div><div className="eyebrow">Biedklaar voor deze woning</div><div className={`score ${pass.level}`}>{pass.total}%</div></div><Badge level={pass.level}>{pass.label}</Badge></div>
+        <h2>{home.title}</h2><p>{home.city} · {euro(home.price)} · {home.rooms} kamers · energielabel {home.energy}</p>
+        <div className="gap"><div><span>Jouw bandbreedte</span><b>{shortEuro(plan.current)}</b></div><div><span>Vraagprijs</span><b>{shortEuro(plan.target)}</b></div><div><span>Verschil</span><b>{plan.gap<=0?'Binnen bereik':shortEuro(plan.gap)}</b></div></div>
+        <h3>Wat maakt deze woning haalbaarder?</h3>
+        <div className="plan">{plan.items.length ? plan.items.map(item=><div className="plan-item" key={item.title}><div><b>{item.title}</b><p>{item.detail}</p></div><span>+{shortEuro(item.impact)}</span></div>) : <p>Deze woning past goed. Volgende stap: ATLAS-status delen met makelaar.</p>}</div>
+        <div className="potential"><TrendingUp/><div><span>Potentiële bandbreedte na acties</span><b>{shortEuro(plan.potential)}</b></div></div>
+        <div className="actions"><button onClick={shareLead}><Send size={17}/> Deel paspoort met makelaar</button><button className="secondary">Plan final check adviseur</button></div>
       </div>
     </div>
-  </section>;
+  </section>
 }
 
-function AgentPage({ leads }) {
+function AgentPage({leads,setPage}){
   return <section>
-    <div className="page-head">
-      <div>
-        <span className="eyebrow">Makelaar</span>
-        <h2>Serieuze kopers komen beter binnen.</h2>
-        <p>De makelaar ziet geen volledige privégegevens, maar wel of iemand financieel voorbereid is.</p>
-      </div>
-    </div>
-    <div className="metric-grid">
-      <Metric label="Leads" value={leads.length}/>
-      <Metric label="Verified" value={leads.filter(l => l.level === 'green').length}/>
-      <Metric label="Review" value={leads.filter(l => l.level === 'red').length}/>
-      <Metric label="Topmatch" value={leads.filter(l => l.matchLevel === 'green').length}/>
-    </div>
-    <div className="panel">
-      {leads.length === 0 ? <div className="empty"><Building2/><h3>Nog geen gedeelde interesses</h3><p>Ga naar Match Radar en deel een ATLAS-status met de makelaar.</p></div> :
-        leads.map(lead => <div className="lead" key={lead.id}>
-          <span className="avatar">{lead.avatar}</span>
-          <div><b>{lead.buyer}</b><small>{lead.home} · {lead.city}</small></div>
-          <Badge level={lead.level}>{lead.status}</Badge>
-          <Badge level={lead.matchLevel}>{lead.match}</Badge>
-          <b>{lead.score}%</b>
-        </div>)
-      }
-    </div>
-  </section>;
+    <Header eyebrow="Makelaar" title="Van losse lead naar gekwalificeerde koper." text="De makelaar krijgt geen volledig privé-dossier, maar een duidelijke inschatting: wie is biedklaar, wie vraagt review en wie is niet realistisch?"/>
+    <div className="metric-grid"><Metric label="Leads" value={leads.length}/><Metric label="Biedklaar" value={leads.filter(l=>l.readinessLevel==='green').length}/><Metric label="Onder voorwaarden" value={leads.filter(l=>l.readinessLevel==='yellow').length}/><Metric label="Review" value={leads.filter(l=>l.readinessLevel==='red').length}/></div>
+    <div className="panel">{leads.length===0?<div className="empty"><Building2/><h3>Nog geen gedeelde paspoorten</h3><p>Ga naar Match Radar en deel een paspoort met een makelaar.</p><button onClick={()=>setPage('radar')}>Open Match Radar</button></div>:leads.map(l=><div className="lead" key={l.id}><span className="avatar">{l.short}</span><div><b>{l.buyer}</b><small>{l.home} · {l.agent}</small></div><Badge level={l.readinessLevel}>{l.readiness}% biedklaar</Badge><Badge level={l.matchLevel}>{l.match}</Badge><span>{shortEuro(l.budget)}</span></div>)}</div>
+  </section>
 }
 
-function FundaPage({ setPage }) {
+function FundaLayer({setPage}){
   return <section>
-    <div className="page-head">
-      <div>
-        <span className="eyebrow">Funda-laag</span>
-        <h2>ATLAS vervangt Funda niet. ATLAS maakt Funda persoonlijker.</h2>
-        <p>De koper logt in met ATLAS en ziet direct welke woningen bij zijn financiële identiteit passen.</p>
-      </div>
-      <button onClick={() => setPage('radar')}>Simuleer woningmatch</button>
-    </div>
+    <Header eyebrow="Funda-laag" title="Funda blijft zoeken. ATLAS maakt zoeken persoonlijk en haalbaar." text="De koper logt in met ATLAS en ziet bij elke woning: past dit bij mijn financiële identiteit en ben ik biedklaar genoeg om te reageren?"/>
     <div className="two">
       <div className="panel">
-        <h3>Wat ziet de koper?</h3>
+        <h3>De koperreis</h3>
         <div className="step-list">
-          <div><span>1</span><b>ATLAS-profiel aanmaken</b><p>Eerste indicatie van kooprichting.</p></div>
-          <div><span>2</span><b>Woningen doelgericht bekijken</b><p>Past, onder voorwaarden of niet realistisch.</p></div>
-          <div><span>3</span><b>Makelaar contacteren</b><p>Met een sterker en serieuzer profiel.</p></div>
-          <div><span>4</span><b>Hypotheekadviseur final check</b><p>Definitieve toetsing blijft professioneel en officieel.</p></div>
+          <div><span>1</span><b>ATLAS-profiel</b><p>Financiële richting en bandbreedte.</p></div>
+          <div><span>2</span><b>Match Radar</b><p>Per woning zien waarom hij wel of niet past.</p></div>
+          <div><span>3</span><b>Biedklaar Paspoort</b><p>Serieuze status delen met makelaar.</p></div>
+          <div><span>4</span><b>Final check</b><p>Hypotheekadviseur of bank bevestigt officieel.</p></div>
         </div>
+        <button onClick={()=>setPage('passport')}>Bekijk paspoort</button>
       </div>
       <div className="browser">
         <div className="browser-top"><b>funda</b><button>Inloggen met ATLAS</button></div>
-        <div className="browser-row"><span>Gezinswoning Eemnes</span><Badge level="green">Past bij profiel</Badge></div>
-        <div className="browser-row"><span>Hoekwoning Bussum</span><Badge level="yellow">Onder voorwaarden</Badge></div>
-        <div className="browser-row"><span>Villa Blaricum</span><Badge level="red">Niet realistisch</Badge></div>
+        <div className="browser-row"><span>Gezinswoning Eemnes</span><Badge level="yellow">78% biedklaar</Badge></div>
+        <div className="browser-row"><span>Nieuwbouw Baarn</span><Badge level="green">91% biedklaar</Badge></div>
+        <div className="browser-row"><span>Vrijstaand Laren</span><Badge level="red">42% biedklaar</Badge></div>
       </div>
     </div>
-  </section>;
+  </section>
 }
 
-function StudioPage({ profile, updateProfile, result }) {
-  const fields = [
-    ['income','Bruto jaarinkomen koper'],
-    ['partnerIncome','Partnerinkomen'],
-    ['cash','Eigen middelen'],
-    ['bonus','Jaarlijkse bonus'],
-    ['studyDebt','Studieschuld'],
-    ['loans','Overige leningen'],
-    ['leaseMonthly','Private lease p/m']
-  ];
+function StudioPage({profile,result,pass,updateProfile}){
   return <section>
-    <div className="page-head">
-      <div>
-        <span className="eyebrow">Simulatie</span>
-        <h2>Laat live zien wat factoren doen.</h2>
-        <p>Dit is nuttig in gesprekken met makelaars: je ziet direct waarom het ene profiel sterker is dan het andere.</p>
-      </div>
-      <Badge level={result.level}>{result.status}</Badge>
-    </div>
+    <Header eyebrow="Simulatie" title="Laat live zien wat de koper sterker maakt." text="Hier zie je direct welke factoren de bandbreedte en biedklaarheid beïnvloeden."/>
     <div className="two">
       <div className="panel form">
-        {fields.map(([id,label]) => <label key={id}>{label}<input type="number" value={profile[id]} onChange={e => updateProfile(id, e.target.value)}/></label>)}
-        <label>Documentstatus ({profile.docs}%)<input type="range" min="0" max="100" value={profile.docs} onChange={e => updateProfile('docs', e.target.value)}/></label>
-        <label>BKR<select value={profile.bkr} onChange={e => updateProfile('bkr', e.target.value)}><option value="none">Geen</option><option value="minor">Licht</option><option value="serious">Serieus</option></select></label>
+        {[
+          ['income','Bruto jaarinkomen koper'],['partnerIncome','Partnerinkomen'],['cash','Eigen middelen'],['bonus','Jaarlijkse bonus'],['studyDebt','Studieschuld'],['loans','Overige leningen'],['leaseMonthly','Private lease p/m']
+        ].map(([id,label])=><label key={id}>{label}<input type="number" value={profile[id]} onChange={e=>updateProfile(id,e.target.value)}/></label>)}
+        <Range label="Documentstatus" value={profile.docs} setValue={v=>updateProfile('docs',v)}/>
+        <Range label="Adviseurcheck" value={profile.adviseurCheck} setValue={v=>updateProfile('adviseurCheck',v)}/>
+        <Range label="Eigen middelen bewijs" value={profile.proofOfFunds} setValue={v=>updateProfile('proofOfFunds',v)}/>
       </div>
       <div className="panel sticky">
         <h3>Live resultaat</h3>
-        <div className="big-number">{shortEuro(result.budget)}</div>
-        <div className="scorebar light"><span style={{width: `${result.score}%`}} /></div>
-        <p>Score {result.score}/100. Status: {result.status}.</p>
+        <div className="big-number">{shortEuro(result.budget)}</div><Progress value={result.score} level={result.level}/><p>Financial score {result.score}/100</p>
+        <div className="big-number">{pass.total}%</div><Progress value={pass.total} level={pass.level}/><p>Biedklaarheid voor geselecteerde woning.</p>
       </div>
     </div>
-  </section>;
+  </section>
 }
 
-createRoot(document.getElementById('root')).render(<App />);
+function Header({eyebrow,title,text}){return <div className="page-head"><div><span className="eyebrow">{eyebrow}</span><h2>{title}</h2><p>{text}</p></div></div>}
+function Metric({label,value}){return <div className="metric"><span>{label}</span><b>{value}</b></div>}
+function Range({label,value,setValue}){return <label>{label} ({value}%)<input type="range" min="0" max="100" value={value} onChange={e=>setValue(e.target.value)}/></label>}
+
+createRoot(document.getElementById('root')).render(<App/>);
