@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ATLAS Werkende Demo App v2</title>
+<style>
+:root{--bg:#f6f4ef;--ink:#17211f;--muted:#68706d;--line:#ded8cc;--card:#fffdf8;--brand:#143c3a;--gold:#b98d44;--soft:#edf4f1;--good:#176b4d;--warn:#9a661b;--bad:#8d2b2b}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{display:grid;grid-template-columns:280px 1fr;min-height:100vh}.side{background:#fffdf8;border-right:1px solid var(--line);padding:24px;position:sticky;top:0;height:100vh}
+.logo{font-size:28px;letter-spacing:.14em;font-weight:900;color:var(--brand)}.tag{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.4}
+.nav{display:grid;gap:8px;margin-top:28px}.nav button{border:0;background:transparent;text-align:left;padding:13px 14px;border-radius:12px;font-size:15px;cursor:pointer;color:var(--ink)}
+.nav button.on,.nav button:hover{background:var(--soft);font-weight:800;color:var(--brand)}
+.note{position:absolute;bottom:24px;left:24px;right:24px;background:#f7f1e6;border:1px solid var(--line);border-radius:18px;padding:15px;color:var(--muted);font-size:13px;line-height:1.4}
+main{padding:34px;max-width:1280px}.screen{display:none}.screen.on{display:block}
+h1{font-size:50px;line-height:1.02;margin:0 0 16px;letter-spacing:-.04em}h2{font-size:35px;margin:0 0 14px;letter-spacing:-.03em}h3{margin:0 0 10px}
+p{color:var(--muted);line-height:1.55}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;background:linear-gradient(135deg,#fffdf8,#eef5f2);border:1px solid var(--line);border-radius:30px;padding:42px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 10px 35px rgba(0,0,0,.04)}.dark{background:#10201f;color:white}.dark p{color:#d9e3df}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+.btn{background:var(--brand);color:#fff;border:0;border-radius:999px;padding:13px 18px;font-weight:800;cursor:pointer;font-size:15px}.btn2{background:#fff;color:var(--brand);border:1px solid var(--line)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.badge{display:inline-flex;border-radius:999px;padding:8px 12px;font-weight:850;font-size:13px}.good{background:#e5f4ec;color:var(--good)}.warn{background:#fff1d8;color:var(--warn)}.bad{background:#f8e4e1;color:var(--bad)}.neutral{background:#edf1f0;color:#394542}
+.metric{font-size:38px;font-weight:900;color:var(--brand);letter-spacing:-.04em}.dark .metric{color:white}.label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:850}.dark .label{color:#b6c5bf}.small{font-size:13px;color:var(--muted)}
+.input,select{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:14px;background:#fff;margin:7px 0 13px;font-size:15px}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.profilegrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0}.profile{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;cursor:pointer}.profile.sel{border-color:var(--brand);box-shadow:0 10px 28px rgba(20,60,58,.1)}
+.progress{height:10px;background:#e5e0d6;border-radius:999px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,var(--brand),var(--gold));width:50%}.bar.warnbar{background:linear-gradient(90deg,#b98d44,#d8b56f)}.bar.badbar{background:linear-gradient(90deg,#8d2b2b,#c8786c)}
+.housegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}.house{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden}.visual{height:135px;background:linear-gradient(135deg,#d8d1c4,#f8f5ec);position:relative}.visual:before{content:"";position:absolute;left:28px;right:28px;bottom:0;height:75px;background:#fffdf8;border:1px solid var(--line);border-bottom:0;border-radius:16px 16px 0 0}.body{padding:18px}
+.factor{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.factor:last-child{border-bottom:0}
+table{width:100%;border-collapse:separate;border-spacing:0 10px}td,th{text-align:left;padding:14px;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);vertical-align:middle}th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;background:transparent;border:0}td:first-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px}td:last-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}
+.toast{position:fixed;right:20px;bottom:20px;background:var(--brand);color:#fff;border-radius:16px;padding:14px 18px;display:none;box-shadow:0 14px 35px rgba(0,0,0,.18)}
+.warning{background:#fff7e8;border:1px solid #ead1a8;border-radius:18px;padding:14px;color:#75521d;margin:14px 0}
+@media(max-width:950px){.wrap{grid-template-columns:1fr}.side{position:relative;height:auto}.note{position:static;margin-top:20px}.hero,.grid,.grid2,.grid4,.profilegrid,.housegrid,.form{grid-template-columns:1fr}main{padding:18px}h1{font-size:38px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside class="side">
+<div class="logo">ATLAS</div><div class="tag">A Trusted Financial Identity for Homebuyers</div>
+<div class="nav">
+<button data-screen="start" class="on">01 · Start</button>
+<button data-screen="login">02 · Profielen</button>
+<button data-screen="edit">03 · Gegevens</button>
+<button data-screen="identity">04 · Identity</button>
+<button data-screen="homes">05 · Woningen</button>
+<button data-screen="agent">06 · Makelaar</button>
+<button data-screen="funda">07 · Funda</button>
+</div>
+<div class="note"><b>Demo v2</b><br>Werkt met normale knoppen. Werkt het niet in de preview? Open het bestand in Safari/Chrome.</div>
+</aside>
+<main>
+<section id="start" class="screen on">
+<div class="hero">
+<div><span class="badge good">Werkende demo</span><h1>ATLAS toont alleen wat financieel logisch is.</h1><p>Kies een profiel, pas gegevens aan, bereken opnieuw, filter woningen en deel interesse met de makelaar.</p><div class="row"><button class="btn jump" data-screen="login">Start demo</button><button class="btn btn2 jump" data-screen="homes">Bekijk woningen</button></div></div>
+<div class="card dark"><div class="label">Actief profiel</div><h2 id="heroName">-</h2><p id="heroText">-</p><span id="heroStatus"></span><div style="margin-top:22px"><div class="label">ATLAS-bandbreedte</div><div class="metric" id="heroBudget">-</div></div></div>
+</div>
+<div class="grid"><div class="card"><h3>Scenario’s</h3><p>Erik-profiel, studieschuld, laag inkomen, hoog inkomen en BKR.</p></div><div class="card"><h3>Live berekening</h3><p>Wijzig de gegevens en de status verandert direct.</p></div><div class="card"><h3>Makelaar</h3><p>Gedeelde woninginteresse verschijnt in het dashboard.</p></div></div>
+</section>
+
+<section id="login" class="screen"><h2>Profielen</h2><p>Kies een demo-profiel.</p><div id="profileGrid" class="profilegrid"></div><div class="row"><button class="btn jump" data-screen="edit">Gegevens aanpassen</button><button class="btn btn2" id="resetBtn">Reset demo</button></div></section>
+
+<section id="edit" class="screen"><h2>Gegevens aanpassen</h2><div class="grid2"><div class="card"><h3>Financiële input</h3><div class="form">
+<div><div class="label">Naam</div><input id="name" class="input"></div><div><div class="label">Samen kopen</div><select id="together"><option value="yes">Ja</option><option value="no">Nee</option></select></div>
+<div><div class="label">Bruto jaarinkomen</div><input id="income" class="input" type="number"></div><div><div class="label">Partnerinkomen</div><input id="partner" class="input" type="number"></div>
+<div><div class="label">Eigen middelen</div><input id="cash" class="input" type="number"></div><div><div class="label">Studieschuld</div><input id="study" class="input" type="number"></div>
+<div><div class="label">Overige leningen</div><input id="loan" class="input" type="number"></div><div><div class="label">Private lease p/m</div><input id="lease" class="input" type="number"></div>
+<div><div class="label">BKR</div><select id="bkr"><option value="none">Geen</option><option value="minor">Licht</option><option value="serious">Serieus</option></select></div><div><div class="label">Documenten</div><select id="docs"><option value="high">Hoog</option><option value="medium">Middel</option><option value="low">Laag</option></select></div>
+</div><button id="saveBtn" class="btn">Bereken opnieuw</button></div>
+<div class="card"><h3>Live resultaat</h3><div class="grid2"><div class="card"><div class="label">Status</div><div class="metric" id="liveStatus" style="font-size:26px">-</div></div><div class="card"><div class="label">Bandbreedte</div><div class="metric" id="liveBudget">-</div></div></div><div class="progress"><div id="liveBar" class="bar"></div></div><p id="liveText" class="small"></p><div class="warning"><b>Let op:</b> demo-berekening, geen hypotheekadvies.</div></div></div></section>
+
+<section id="identity" class="screen"><h2>ATLAS Identity</h2><div class="grid4"><div class="card"><div class="label">Status</div><div class="metric" id="idStatus" style="font-size:26px">-</div></div><div class="card"><div class="label">Score</div><div class="metric" id="idScore">-</div></div><div class="card"><div class="label">Bandbreedte</div><div class="metric" id="idBudget">-</div></div><div class="card"><div class="label">Geldig</div><div class="metric" style="font-size:26px">30 dagen</div></div></div><div class="grid2"><div class="card"><h3>Factoren</h3><div id="factors"></div></div><div class="card"><h3>Privacy</h3><p>De makelaar ziet status, bandbreedte en woningmatch. Geen loonstroken, documenten of volledige schuldenlijst.</p></div></div></section>
+
+<section id="homes" class="screen"><h2>Woningen</h2><p id="homesIntro">-</p><div class="row"><button class="btn filter" data-filter="all">Alle woningen</button><button class="btn btn2 filter" data-filter="green">Alleen passend</button><button class="btn btn2 filter" data-filter="yellow">Passend + voorwaarden</button></div><div id="houseGrid" class="housegrid"></div></section>
+
+<section id="agent" class="screen"><h2>Makelaarsdashboard</h2><div class="grid4"><div class="card"><div class="label">Leads</div><div class="metric" id="leadCount">0</div></div><div class="card"><div class="label">Verified</div><div class="metric" id="verifiedCount">0</div></div><div class="card"><div class="label">Review</div><div class="metric" id="reviewCount">0</div></div><div class="card"><div class="label">Topmatch</div><div class="metric" id="topCount">0</div></div></div><div class="card"><h3>Gedeelde interesses</h3><table id="leadTable"></table></div></section>
+
+<section id="funda" class="screen"><h2>Funda-integratie</h2><div class="grid2"><div class="card"><h3>Inloggen met ATLAS</h3><p>Na login worden woningen automatisch gelabeld op haalbaarheid.</p><button class="btn jump" data-screen="homes">🔒 Inloggen met ATLAS</button></div><div class="card"><h3>Waarde</h3><div class="factor"><b>Relevanter zoeken</b><span class="badge good">Ja</span></div><div class="factor"><b>Betere leads</b><span class="badge good">Ja</span></div><div class="factor"><b>Hypotheekgarantie</b><span class="badge bad">Nee</span></div></div></div></section>
+</main></div><div id="toast" class="toast"></div>
+<script>
+(function(){
+const defaults=[
+{id:"erik",name:"Erik-profiel",together:"yes",income:72800,partner:57600,cash:85000,study:0,loan:25000,lease:550,bkr:"none",docs:"high"},
+{id:"study",name:"Starter met studieschuld",together:"no",income:52000,partner:0,cash:18000,study:38000,loan:0,lease:0,bkr:"none",docs:"medium"},
+{id:"low",name:"Laag inkomen",together:"no",income:36000,partner:0,cash:9000,study:0,loan:4000,lease:0,bkr:"none",docs:"medium"},
+{id:"high",name:"Hoog inkomen",together:"yes",income:115000,partner:82000,cash:180000,study:0,loan:0,lease:0,bkr:"none",docs:"high"},
+{id:"bkr",name:"BKR-registratie",together:"no",income:62000,partner:0,cash:12000,study:0,loan:15000,lease:0,bkr:"serious",docs:"low"}];
+const houses=[["h1","Appartement Hilversum",285000,"Hilversum"],["h2","Tussenwoning Almere",375000,"Almere"],["h3","Nieuwbouw Baarn",515000,"Baarn"],["h4","Gezinswoning Eemnes",675000,"Eemnes"],["h5","Hoekwoning Bussum",725000,"Bussum"],["h6","Vrijstaand Laren",925000,"Laren"],["h7","Villa Blaricum",1250000,"Blaricum"],["h8","Starterswoning Amersfoort",335000,"Amersfoort"],["h9","Maisonnette Utrecht",445000,"Utrecht"]];
+let profiles=JSON.parse(localStorage.getItem("atlas_v2_profiles")||"null")||defaults;
+let currentId=localStorage.getItem("atlas_v2_current")||"erik";
+let leads=JSON.parse(localStorage.getItem("atlas_v2_leads")||"[]");
+let filter="all";
+const $=id=>document.getElementById(id);
+function cur(){return profiles.find(p=>p.id===currentId)||profiles[0]}
+function calc(p){let inc=Number(p.income)+(p.together==="yes"?Number(p.partner):0),base=inc*4.45,cash=Math.min(Number(p.cash),250000)*.82,pen=Number(p.study)*.55+Number(p.loan)*1.15+Number(p.lease)*180+(p.docs==="low"?60000:p.docs==="medium"?20000:0)+(p.bkr==="serious"?999999:p.bkr==="minor"?65000:0),budget=Math.max(0,base+cash-pen),score=50;score+=inc>90000?18:inc>55000?8:-8;score+=p.cash>50000?12:p.cash>15000?5:-6;score-=p.study>25000?9:p.study>0?4:0;score-=p.loan>10000?8:0;score-=p.lease>0?8:0;score-=p.docs==="low"?18:p.docs==="medium"?6:-4;score-=p.bkr==="serious"?45:p.bkr==="minor"?16:0;score=Math.max(0,Math.min(98,Math.round(score)));let cls=score>=72&&budget>0?"good":score>=42&&budget>0?"warn":"bad";return{budget,score,cls,status:cls==="good"?"Verified Buyer":cls==="warn"?"Conditional Review":"Review Required",text:cls==="good"?"Sterk genoeg voor een groene ATLAS-status.":cls==="warn"?"Bruikbaar, maar met voorwaarden of onzekerheden.":"Geen groene status. Review of herstel nodig."}}
+function euro(n){return "€ "+Math.round(n).toLocaleString("nl-NL")}function short(n){return n<=0?"Review":"€ "+Math.round(n/1000)+"k"}function b(t,c){return '<span class="badge '+c+'">'+t+'</span>'}
+function hstatus(price){let c=calc(cur());if(c.budget<=0)return["Review nodig","bad","red"];if(price<=c.budget)return["Past direct","good","green"];if(price<=c.budget*1.12)return["Onder voorwaarden","warn","yellow"];return["Niet realistisch","bad","red"]}
+function toast(t){$("toast").textContent=t;$("toast").style.display="block";setTimeout(()=>$("toast").style.display="none",1800)}
+function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("on"));$(id).classList.add("on");document.querySelectorAll(".nav button").forEach(x=>x.classList.toggle("on",x.dataset.screen===id));render()}
+function fill(){let p=cur();["name","together","income","partner","cash","study","loan","lease","bkr","docs"].forEach(k=>$(k).value=p[k])}
+function save(){let p=cur();["name","together","bkr","docs"].forEach(k=>p[k]=$(k).value);["income","partner","cash","study","loan","lease"].forEach(k=>p[k]=Number($(k).value||0));localStorage.setItem("atlas_v2_profiles",JSON.stringify(profiles));render();toast("Opnieuw berekend")}
+function reset(){profiles=JSON.parse(JSON.stringify(defaults));currentId="erik";leads=[];localStorage.setItem("atlas_v2_profiles",JSON.stringify(profiles));localStorage.setItem("atlas_v2_current",currentId);localStorage.setItem("atlas_v2_leads",JSON.stringify(leads));render();toast("Demo gereset")}
+function share(id){let p=cur(),c=calc(p),h=houses.find(x=>x[0]===id),st=hstatus(h[2]);leads.unshift({time:new Date().toLocaleString("nl-NL"),name:p.name,house:h[1],price:h[2],status:c.status,cls:c.cls,budget:c.budget,match:st[0]});leads=leads.slice(0,30);localStorage.setItem("atlas_v2_leads",JSON.stringify(leads));render();toast("Interesse gedeeld")}
+function render(){
+let p=cur(),c=calc(p);$("heroName").textContent=p.name;$("heroText").textContent=c.text;$("heroStatus").innerHTML=b(c.status,c.cls);$("heroBudget").textContent=short(c.budget);
+$("profileGrid").innerHTML=profiles.map(pr=>{let cr=calc(pr);return '<div class="profile '+(pr.id===currentId?'sel':'')+'" data-p="'+pr.id+'"><b>'+pr.name+'</b><br>'+b(cr.status,cr.cls)+'<div class="small" style="margin-top:8px">Bandbreedte: '+short(cr.budget)+'</div></div>'}).join("");
+document.querySelectorAll(".profile").forEach(el=>el.onclick=()=>{currentId=el.dataset.p;localStorage.setItem("atlas_v2_current",currentId);render();toast("Profiel geladen")});
+fill();$("liveStatus").textContent=c.status;$("liveBudget").textContent=short(c.budget);$("liveText").textContent=c.text;$("liveBar").style.width=c.score+"%";$("liveBar").className="bar "+(c.cls==="bad"?"badbar":c.cls==="warn"?"warnbar":"");
+$("idStatus").textContent=c.status;$("idScore").textContent=c.score+"/100";$("idBudget").textContent=short(c.budget);
+let inc=Number(p.income)+(p.together==="yes"?Number(p.partner):0);$("factors").innerHTML=[
+["Huishoudinkomen",euro(inc),inc>90000?"good":inc>45000?"warn":"bad"],["Eigen middelen",euro(p.cash),p.cash>50000?"good":p.cash>15000?"warn":"bad"],["Studieschuld",euro(p.study),p.study>25000?"warn":"good"],["Leningen + lease",euro(p.loan)+" / "+euro(p.lease)+" p/m",(p.loan>10000||p.lease>0)?"warn":"good"],["BKR",p.bkr==="none"?"Geen":p.bkr==="minor"?"Licht":"Serieus",p.bkr==="serious"?"bad":p.bkr==="minor"?"warn":"good"],["Documenten",p.docs,p.docs==="high"?"good":p.docs==="medium"?"warn":"bad"]].map(x=>'<div class="factor"><b>'+x[0]+'</b>'+b(x[1],x[2])+'</div>').join("");
+$("homesIntro").textContent="Ingelogd als "+p.name+". ATLAS-bandbreedte: "+short(c.budget)+".";
+let list=houses.filter(h=>{let s=hstatus(h[2])[2];return filter==="green"?s==="green":filter==="yellow"?(s==="green"||s==="yellow"):true});
+$("houseGrid").innerHTML=list.map(h=>{let s=hstatus(h[2]);return '<div class="house"><div class="visual"></div><div class="body"><h3>'+h[1]+'</h3><p>'+h[3]+' · '+euro(h[2])+'</p>'+b(s[0],s[1])+'<div class="row"><button class="btn btn2 share" data-h="'+h[0]+'">Deel interesse</button></div></div></div>'}).join("")||'<div class="card"><h3>Geen woningen</h3><p>Pas het filter of profiel aan.</p></div>';
+document.querySelectorAll(".share").forEach(el=>el.onclick=()=>share(el.dataset.h));
+$("leadCount").textContent=leads.length;$("verifiedCount").textContent=leads.filter(l=>l.cls==="good").length;$("reviewCount").textContent=leads.filter(l=>l.cls==="bad").length;$("topCount").textContent=leads.filter(l=>l.match==="Past direct").length;
+$("leadTable").innerHTML='<tr><th>Tijd</th><th>Koper</th><th>Woning</th><th>Status</th><th>Match</th><th>Bandbreedte</th></tr>'+(leads.length?leads.map(l=>'<tr><td>'+l.time+'</td><td>'+l.name+'</td><td>'+l.house+'<br><span class="small">'+euro(l.price)+'</span></td><td>'+b(l.status,l.cls)+'</td><td>'+l.match+'</td><td>'+short(l.budget)+'</td></tr>').join(""):'<tr><td colspan="6">Nog geen gedeelde interesses.</td></tr>');
+}
+document.querySelectorAll("[data-screen]").forEach(el=>el.addEventListener("click",()=>show(el.dataset.screen)));
+document.querySelectorAll(".filter").forEach(el=>el.addEventListener("click",()=>{filter=el.dataset.filter;render()}));
+$("saveBtn").addEventListener("click",save);$("resetBtn").addEventListener("click",reset);
+render();
+})();
+</script>
+</body>
+</html>
