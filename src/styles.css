@@ -23,3 +23,49 @@
 .atlasHero:before{content:"Funda toont woningen. ATLAS maakt kopers koopklaar.";position:absolute;right:28px;top:22px;background:rgba(255,255,255,.70);border:1px solid var(--line);border-radius:999px;padding:9px 13px;color:var(--brand);font-weight:900;font-size:12px}
 .atlasHero{position:relative}
 @media(max-width:1100px){.journeyHead,.nextStep{grid-template-columns:1fr;display:grid}.journeyHead{align-items:flex-start}.nextActions{justify-content:flex-start}.flowDots{padding-bottom:4px}}
+
+
+/* ATLAS NEXT 2.7 — responsive, dynamic routes, human onboarding */
+html,body,#root{width:100%;max-width:100%;overflow-x:hidden}
+.app{grid-template-columns:290px minmax(0,1fr);width:100%;max-width:100vw;overflow-x:hidden}
+main{min-width:0;max-width:1280px;overflow-x:hidden}
+section,.panel,.card,.metric,.valuation,.propertyDetail,.livePassport,.shareFacts,.doc,.vaultTop,.livePanel,.woningDocs,.chatShell,.marketHero{min-width:0}
+.field input{min-width:0}
+.journeyFlow{max-width:100%;overflow:hidden}
+.journeyHead{align-items:flex-start}
+.flowDots{display:grid;grid-template-columns:repeat(auto-fit,minmax(42px,1fr));gap:6px;overflow:hidden;max-width:100%;padding-top:12px}
+.flowDots button{min-width:0;width:100%;justify-content:center;padding:8px 6px;border-radius:14px;overflow:hidden}
+.flowDots button span{display:none}
+.flowDots button.active span{display:inline;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atlasHero,.wizardGrid,.homeEngine,.adviceGrid,.marketHero,.matchGrid,.shareGrid{max-width:100%}
+.lifeNotice{display:flex;gap:14px;background:linear-gradient(135deg,#fffdf8,var(--sage));border:1px solid var(--line);border-radius:22px;padding:17px;margin:0 0 16px;box-shadow:0 12px 32px rgba(20,44,39,.06)}
+.lifeNotice svg{color:var(--brand);flex:0 0 auto;margin-top:2px}
+.lifeNotice b{display:block;color:var(--brand);font-size:18px;margin-bottom:4px}
+.lifeNotice p{margin:0 0 7px}
+.lifeNotice span{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 10px;color:var(--brand);font-weight:850;font-size:12px}
+.lifeNotice.starter{background:linear-gradient(135deg,#fffdf8,#e8f0ea)}
+.lifeNotice.sensitive{background:linear-gradient(135deg,#fffdf8,#f4efe7)}
+.lifeNotice.sensitive svg{color:#8f6536}
+.lifeNotice.sensitive b{color:#5f4226}
+.livePanel .metric:last-of-type{margin-bottom:8px}
+@media(max-width:1180px){
+ .app{grid-template-columns:260px minmax(0,1fr)}
+ aside{padding:16px}
+ main{padding:18px;max-width:calc(100vw - 260px)}
+ .wizardGrid{grid-template-columns:minmax(0,1fr) 280px}
+ .homeEngine{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .valuation{grid-column:1/-1}
+ .atlasHero{grid-template-columns:minmax(0,1fr)}
+ .scoreOrb{max-width:360px}
+ .flowDots button.active span{display:none}
+ .marketRow{grid-template-columns:120px 1fr 1fr 1fr}
+ .marketRow p{grid-column:1/-1}
+}
+@media(max-width:900px){
+ .app{grid-template-columns:1fr}
+ main{max-width:100vw}
+ aside{height:auto;position:relative}
+ .wizardGrid,.homeEngine,.adviceGrid,.marketHero,.matchGrid,.shareGrid,.two,.toggleGrid,.doc,.chatShell,.marketNums{grid-template-columns:1fr}
+ .livePanel{position:relative;top:auto}
+ .flowDots{grid-template-columns:repeat(6,1fr)}
+}

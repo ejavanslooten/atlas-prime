@@ -1,16 +1,18 @@
-# ATLAS NEXT 2.6
+# ATLAS NEXT 2.7
 
-Voortbouwend op NEXT 2.5.
+Voortbouwend op NEXT 2.6.
 
 Nieuw:
-- ATLAS Kooproute: duidelijke flow "Stap X van 12"
-- Boven elke pagina een routebalk naar biedklaar
-- Elke pagina eindigt met een "Volgende beste actie"
-- Resultaat intake stuurt direct door naar Documenten / Marktinzicht
-- Document Vault stuurt onderaan naar de logische vervolgstap
-- Adviesprofiel eindigt met een duidelijke CTA
-- ATLAS onderscheidender gepositioneerd: geen Funda-kopie, maar koopkans-laag bovenop woningzoeken
-- Cockpit herpositioneerd als "Funda toont aanbod, ATLAS maakt kopers koopklaar"
+- Responsive fix: geen horizontale scroll meer op MacBook-scherm
+- Kooproute compacter gemaakt
+- Starter krijgt een eigen route zonder "Mijn woning", overwaarde of huidige-woning-documenten
+- Starter-welkomstkaart toegevoegd met warme begeleiding
+- Gevoelige melding voor weduwe/weduwnaar
+- Gevoelige melding bij gescheiden situatie
+- Live effect-paneel verbergt woningwaarde-betrouwbaarheid bij starters
+- Resultaat intake verbergt overwaarde bij starters
+- Linkermenu en kooproute worden dynamisch per type koper
+- Doorstromer behoudt de eigen-woning/overwaarde-route
 
 Vercel:
 Framework: Vite
