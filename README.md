@@ -1,16 +1,17 @@
-# ATLAS NEXT 2.3
+# ATLAS NEXT 2.4
 
-Voortbouwend op NEXT 2.2.
+Voortbouwend op NEXT 2.3.
 
 Nieuw:
-- + Nieuwe koper knop met profielkeuze
-- BKR-check knop onder BKR-status
-- Laatste 3 salarisstroken als documentset
-- Koopcoach als guided chat
-- Pensioencheck verschijnt automatisch bij relevante leeftijd of werkstatus
-- Taxatierapport en energielabel rapport toegevoegd bij Mijn woning
-- Woningdocumenten gekoppeld aan Document Vault
-- Betrouwbaarheid woningwaarde toegevoegd aan live score
+- Geboortedatum berekent leeftijd automatisch
+- Pensioencheck verschijnt op basis van leeftijd/werkstatus
+- Geen huidige woning = geen overwaarde en geen foutieve koopruimte
+- Rechter overwaardekaart breekt bedragen niet meer raar af
+- Adres-autocomplete demo met suggesties vanaf eerste letters
+- Google Maps-achtige demo-kaart met woningdata
+- Woonwensen Funda-achtiger met zoekbalk, chips, filters en aantallen
+- Adviesprofiel & Risico Engine op basis van hypotheek klantprofiel
+- Document Vault uitgebreid met checklist-logica
 
 Vercel:
 Framework: Vite
