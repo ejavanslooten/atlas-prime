@@ -1,23 +1,14 @@
-# ATLAS Prime 1.0
+# ATLAS NEXT 1.0.1
 
-ATLAS Prime 1.0 is de eerste MVP-demo van ATLAS.
+Snelle UX-verbetering op Prime 1.0.
 
-Kernmodules:
-- Dashboard Vandaag
-- Financial Identity
-- Doorstromer-module
-- Woningwaarde Scan
-- Data Engine
-- Document Vault
-- ATLAS Score
-- Confidence Score
-- Woningdetail
-- Match Radar 2.0
-- Scenario Simulator
-- Biedklaar Paspoort
-- Makelaarsdashboard
-- Funda-laag
-- ATLAS Copilot
+Belangrijkste verbeteringen:
+- Linkermenu teruggebracht naar 5 hoofdcategorieën
+- Dashboard veel visueler gemaakt
+- Meer focus op woningen
+- Minder lege ruimte
+- Beter bruikbaar op kleiner MacBook-scherm
+- Premium groene huisstijl behouden
 
 Vercel:
 Framework: Vite
