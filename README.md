@@ -1,17 +1,16 @@
-# ATLAS NEXT 2.2
+# ATLAS NEXT 2.3
 
-Nieuwe versie:
-- Uitgebreide Gegevens Wizard
-- Persoonlijke gegevens
-- Burgerlijke staat / gehuwd / vermogensregeling
-- Gezinssituatie
-- Kinderen, aantal kinderen, leeftijden kinderen
-- Partnergegevens
-- Werk & inkomen uitgebreider
-- Financiële situatie uitgebreider
-- Woonwensen
-- Document Vault als checklist met duidelijke Upload / Bekijk / AI check knoppen
-- Live scorepaneel
+Voortbouwend op NEXT 2.2.
+
+Nieuw:
+- + Nieuwe koper knop met profielkeuze
+- BKR-check knop onder BKR-status
+- Laatste 3 salarisstroken als documentset
+- Koopcoach als guided chat
+- Pensioencheck verschijnt automatisch bij relevante leeftijd of werkstatus
+- Taxatierapport en energielabel rapport toegevoegd bij Mijn woning
+- Woningdocumenten gekoppeld aan Document Vault
+- Betrouwbaarheid woningwaarde toegevoegd aan live score
 
 Vercel:
 Framework: Vite
