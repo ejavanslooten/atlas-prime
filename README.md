@@ -1,12 +1,11 @@
-# ATLAS NEXT 2.0
+# ATLAS NEXT 2.1
 
-Nieuwe productrichting:
-- Koopklaar Journey
-- Mijn Woning Engine
-- Woning Match als beslissingslaag
-- Koopcoach
-- Deelbaar live ATLAS Paspoort
-- ATLAS Confidence Engine
+Verbetering:
+- Alle knoppen links werken
+- Gegevens invullen toegevoegd
+- Huidige woning invullen toegevoegd
+- Document Vault met demo-upload toegevoegd
+- Scores reageren live op ingevulde gegevens/documenten
 
 Vercel:
 Framework: Vite
