@@ -20,7 +20,7 @@
 .nextStep h3{margin:5px 0 4px;color:var(--brand)}
 .nextStep p{margin:0}
 .nextActions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-.atlasHero:before{content:"Funda toont woningen. ATLAS maakt kopers koopklaar.";position:absolute;right:28px;top:22px;background:rgba(255,255,255,.70);border:1px solid var(--line);border-radius:999px;padding:9px 13px;color:var(--brand);font-weight:900;font-size:12px}
+.atlasHero:before{content:"ATLAS geeft duidelijkheid over je kooppositie.";position:absolute;right:28px;top:22px;background:rgba(255,255,255,.70);border:1px solid var(--line);border-radius:999px;padding:9px 13px;color:var(--brand);font-weight:900;font-size:12px}
 .atlasHero{position:relative}
 @media(max-width:1100px){.journeyHead,.nextStep{grid-template-columns:1fr;display:grid}.journeyHead{align-items:flex-start}.nextActions{justify-content:flex-start}.flowDots{padding-bottom:4px}}
 
@@ -114,4 +114,23 @@ section,.panel,.card,.metric,.valuation,.propertyDetail,.livePassport,.shareFact
  .adviceLayout,.passportExplain,.adviceCards{grid-template-columns:1fr}
  .adviceSide{position:relative;top:auto}
  .adviceTabs{grid-template-columns:repeat(2,1fr)}
+}
+
+
+/* ATLAS NEXT 2.9 — professionele positionering, homepage autocomplete en gevoeligere routes */
+.heroSearchWrap{position:relative;max-width:760px}
+.homeSuggest{position:absolute;left:0;right:0;top:68px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:8px;box-shadow:0 22px 70px rgba(20,44,39,.16);z-index:10;display:grid;gap:6px}
+.homeSuggest button{background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:11px 12px;text-align:left;justify-content:flex-start;display:grid;grid-template-columns:20px 1fr;gap:10px}
+.homeSuggest button:hover{background:var(--sage)}
+.homeSuggest b{display:block;color:var(--brand)}
+.homeSuggest span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.one{display:grid;grid-template-columns:1fr;gap:14px}
+.lifeNotice.compact{padding:14px;margin-bottom:14px}
+.lifeNotice.compact b{font-size:16px}
+.lifeNotice.compact p{font-size:14px}
+.routeBadge.sensitive{border-color:#e5d6c4}
+.heroModes span:nth-child(4){background:#f6efe7;color:#5f4226}
+@media(max-width:900px){
+ .homeSuggest{position:relative;top:auto;margin-top:8px}
+ .heroSearchWrap{max-width:100%}
 }
