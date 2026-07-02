@@ -1,17 +1,20 @@
-# ATLAS NEXT 2.4
+# ATLAS NEXT 2.5
 
-Voortbouwend op NEXT 2.3.
+Voortbouwend op NEXT 2.4.
 
 Nieuw:
-- Geboortedatum berekent leeftijd automatisch
-- Pensioencheck verschijnt op basis van leeftijd/werkstatus
-- Geen huidige woning = geen overwaarde en geen foutieve koopruimte
-- Rechter overwaardekaart breekt bedragen niet meer raar af
-- Adres-autocomplete demo met suggesties vanaf eerste letters
-- Google Maps-achtige demo-kaart met woningdata
-- Woonwensen Funda-achtiger met zoekbalk, chips, filters en aantallen
-- Adviesprofiel & Risico Engine op basis van hypotheek klantprofiel
-- Document Vault uitgebreid met checklist-logica
+- Document Vault dynamisch per type koper
+- Starter krijgt geen huidige-woning-documenten
+- Doorstromer krijgt huidige woning documenten
+- ZZP krijgt jaarstukken / IB-aangiftes / prognose
+- Select/dropdown velden vervangen door professionele ATLAS-keuzekaarten
+- Overuren uit standaard scherm; nu onder Extra inkomen toevoegen
+- Google Maps demo/adresselectie gefixt
+- Adresselectie vult woningwaarde, WOZ, postcode, type, label en kaart
+- Nieuwe Funda-achtige cockpit zoeklaag
+- Nieuwe pagina Marktinzicht / Koopkansen
+- Koopcoach koppelt aan marktalternatieven
+- Woonwensen verder Funda-achtig
 
 Vercel:
 Framework: Vite
