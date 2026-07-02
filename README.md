@@ -1,5 +1,25 @@
-# ATLAS Prime 0.9
+# ATLAS Prime 1.0
 
-Premium pilot demo: ATLAS Score, Document Vault, woningdetail, Match Radar, makelaarswaarde en Funda-laag.
+ATLAS Prime 1.0 is de eerste MVP-demo van ATLAS.
 
-Vercel: Vite, build `npm run build`, output `dist`.
+Kernmodules:
+- Dashboard Vandaag
+- Financial Identity
+- Doorstromer-module
+- Woningwaarde Scan
+- Data Engine
+- Document Vault
+- ATLAS Score
+- Confidence Score
+- Woningdetail
+- Match Radar 2.0
+- Scenario Simulator
+- Biedklaar Paspoort
+- Makelaarsdashboard
+- Funda-laag
+- ATLAS Copilot
+
+Vercel:
+Framework: Vite
+Build command: npm run build
+Output directory: dist
