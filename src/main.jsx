@@ -2,314 +2,317 @@
 import React, { useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
-  Home, UserRound, Building2, WalletCards, Bot, CheckCircle2, AlertTriangle,
-  ArrowRight, FileText, MapPin, TrendingUp, ShieldCheck, HousePlus, Send,
-  SlidersHorizontal, Database, LockKeyhole, Radar
+  Home, Route, HousePlus, Search, Bot, Share2, Compass, CheckCircle2,
+  Circle, AlertTriangle, TrendingUp, FileText, Wallet, MapPin, Clock3,
+  ShieldCheck, Building2, Car, GraduationCap, Leaf, Send, Sparkles,
+  Eye, LockKeyhole, Database
 } from 'lucide-react';
 import './styles.css';
 
-const profiles = [
-  {
-    id:'erik', name:'Erik van Slooten', short:'EV', type:'Doorstromer',
-    income:72800, partnerIncome:57600, cash:85000, loans:25000, leaseMonthly:550,
-    docs:82, advisor:65, funds:82, response:78,
-    currentHomeValue:535000, remainingMortgage:355000, sellingCosts:11000,
-    saleStatus:'Nog niet verkocht', bridgeRisk:72
-  },
-  {
-    id:'starter', name:'Sanne de Vries', short:'SV', type:'Starter',
-    income:52000, partnerIncome:0, cash:18000, loans:0, leaseMonthly:0,
-    docs:58, advisor:20, funds:45, response:62,
-    currentHomeValue:0, remainingMortgage:0, sellingCosts:0,
-    saleStatus:'Geen woning', bridgeRisk:0
-  },
-  {
-    id:'lotte', name:'Lotte Vermeer', short:'LV', type:'Doorstromer',
-    income:115000, partnerIncome:82000, cash:180000, loans:0, leaseMonthly:0,
-    docs:94, advisor:88, funds:96, response:91,
-    currentHomeValue:725000, remainingMortgage:390000, sellingCosts:14500,
-    saleStatus:'Verkoop gestart', bridgeRisk:38
-  }
-];
+const buyer = {
+  name: 'Erik',
+  fullName: 'Erik van Slooten',
+  initials: 'EV',
+  income: 72800,
+  partnerIncome: 57600,
+  cash: 85000,
+  leaseMonthly: 550,
+  loans: 25000,
+  docs: 82,
+  confidence: 84,
+  homeValue: 642000,
+  mortgageLeft: 418000,
+  sellingCosts: 21000,
+  saleStatus: 'Nog niet verkocht',
+  address: 'Laarderweg 23, Eemnes',
+  commuteTarget: 'Amsterdam Zuid',
+  family: 'Gezin met 2 kinderen'
+};
 
 const homes = [
-  {id:'baarn', title:'Nieuwbouw Baarn', city:'Baarn', price:515000, rooms:5, energy:'A++', agent:'Buitenplaats Makelaars', img:'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1600&q=80'},
-  {id:'eemnes', title:'Gezinswoning Eemnes', city:'Eemnes', price:675000, rooms:5, energy:'A', agent:'Eemnes & Co', img:'https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=1600&q=80'},
-  {id:'bussum', title:'Hoekwoning Bussum', city:'Bussum', price:725000, rooms:6, energy:'B', agent:'Gooi Wonen Makelaars', img:'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=80'},
-  {id:'laren', title:'Vrijstaand Laren', city:'Laren', price:925000, rooms:7, energy:'A', agent:'Laren Luxury Living', img:'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80'}
+  {
+    id: 'baarn',
+    title: 'Nieuwbouw Baarn',
+    city: 'Baarn',
+    price: 515000,
+    monthly: 2260,
+    match: 94,
+    confidence: 91,
+    finance: 93,
+    acceptance: 64,
+    commute: '31 min',
+    school: '900 m',
+    growth: '+4.1%',
+    label: 'A++',
+    img: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1600&q=80'
+  },
+  {
+    id: 'eemnes',
+    title: 'Gezinswoning Eemnes',
+    city: 'Eemnes',
+    price: 675000,
+    monthly: 2920,
+    match: 87,
+    confidence: 83,
+    finance: 88,
+    acceptance: 51,
+    commute: '42 min',
+    school: '650 m',
+    growth: '+3.2%',
+    label: 'A',
+    img: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=1600&q=80'
+  },
+  {
+    id: 'bussum',
+    title: 'Hoekwoning Bussum',
+    city: 'Bussum',
+    price: 725000,
+    monthly: 3180,
+    match: 76,
+    confidence: 74,
+    finance: 81,
+    acceptance: 39,
+    commute: '28 min',
+    school: '1.2 km',
+    growth: '+3.8%',
+    label: 'B',
+    img: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=80'
+  },
+  {
+    id: 'laren',
+    title: 'Vrijstaand Laren',
+    city: 'Laren',
+    price: 925000,
+    monthly: 4050,
+    match: 48,
+    confidence: 41,
+    finance: 55,
+    acceptance: 21,
+    commute: '39 min',
+    school: '1.8 km',
+    growth: '+2.9%',
+    label: 'A',
+    img: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80'
+  }
 ];
 
-function euro(n){ return n <= 0 ? 'Review' : '€ ' + Math.round(n).toLocaleString('nl-NL'); }
-function short(n){ return n <= 0 ? 'Review' : '€ ' + Math.round(n / 1000) + 'k'; }
-function clamp(n){ return Math.max(0, Math.min(100, n)); }
-function equity(p){ return Math.max(0, p.currentHomeValue - p.remainingMortgage - p.sellingCosts); }
+function euro(n){ return '€ ' + Math.round(n).toLocaleString('nl-NL'); }
+function short(n){ return '€ ' + Math.round(n/1000) + 'k'; }
+function equity(){ return Math.max(0, buyer.homeValue - buyer.mortgageLeft - buyer.sellingCosts); }
+function usableEquity(){ return Math.round(equity() * .82); }
+function buyingPower(){ return Math.round((buyer.income + buyer.partnerIncome) * 4.45 + buyer.cash * .82 + usableEquity() - buyer.leaseMonthly * 180 - buyer.loans * 1.15 - 35000); }
+function level(v){ return v >= 82 ? 'green' : v >= 62 ? 'yellow' : 'red'; }
 
-function calc(p){
-  const income = p.income + p.partnerIncome;
-  const overwaarde = equity(p);
-  const usableEquity = p.type === 'Doorstromer' ? overwaarde * 0.72 : 0;
-  const budget = Math.max(0,
-    income * 4.45 +
-    Math.min(p.cash, 250000) * 0.82 +
-    usableEquity -
-    p.loans * 1.15 -
-    p.leaseMonthly * 180 -
-    (p.docs < 70 ? 25000 : 0) -
-    (p.type === 'Doorstromer' && p.saleStatus === 'Nog niet verkocht' ? 35000 : 0)
-  );
-  let financial = 52 +
-    (income > 140000 ? 22 : income > 90000 ? 16 : income > 55000 ? 8 : -8) +
-    (p.cash > 100000 ? 12 : p.cash > 50000 ? 8 : p.cash > 15000 ? 4 : -5) +
-    (overwaarde > 150000 ? 13 : overwaarde > 50000 ? 6 : 0) -
-    (p.leaseMonthly > 0 ? 8 : 0) -
-    (p.loans > 10000 ? 6 : 0);
-  financial = clamp(Math.round(financial));
-  const confidence = Math.round(p.docs*.34 + p.funds*.25 + p.advisor*.22 + p.response*.10 + (p.type === 'Doorstromer' ? (100-p.bridgeRisk)*.09 : 9));
-  const atlas = Math.round(financial*.40 + p.docs*.18 + p.funds*.16 + p.advisor*.12 + confidence*.14);
-  const level = atlas >= 82 ? 'green' : atlas >= 62 ? 'yellow' : 'red';
-  return {income, budget, overwaarde, usableEquity, financial, confidence, atlas, level, status: level === 'green' ? 'Koopklaar' : level === 'yellow' ? 'Bijna koopklaar' : 'Review nodig'};
-}
+const journey = [
+  ['Persoonlijk', 100],
+  ['Inkomen', 96],
+  ['Eigen woning', 75],
+  ['Documenten', 82],
+  ['Koopruimte', 88],
+  ['Woningen', 91],
+  ['Paspoort', 68],
+  ['Final check', 35]
+];
 
-function match(profile, home){
-  const c = calc(profile);
-  const gap = Math.max(0, home.price - c.budget);
-  let score = c.budget <= 0 ? 8 : Math.round(100 - Math.max(0, gap/home.price)*130);
-  if(gap <= 0) score = Math.min(98, 88 + Math.round(Math.abs(home.price-c.budget)/home.price*10));
-  score = clamp(score);
-  const buyChance = clamp(Math.round(score*.48 + c.atlas*.34 + c.confidence*.18 - (profile.type === 'Doorstromer' ? profile.bridgeRisk*.06 : 0)));
-  const level = score >= 82 ? 'green' : score >= 62 ? 'yellow' : 'red';
-  return {score, buyChance, gap, level, label: level === 'green' ? 'Past bij profiel' : level === 'yellow' ? 'Onder voorwaarden' : 'Niet realistisch'};
-}
-
-function Badge({level, children}){ return <span className={'badge ' + level}>{children}</span> }
-function Meter({value, level}){ return <div className="meter"><span className={level} style={{width: `${clamp(value)}%`}} /></div> }
+function Badge({value, children}){ return <span className={'badge ' + level(value)}>{children}</span>; }
+function Bar({value}){ return <div className="bar"><span className={level(value)} style={{width: value + '%'}} /></div>; }
 
 function App(){
-  const [page, setPage] = useState('dashboard');
-  const [profileId, setProfileId] = useState('erik');
-  const [homeId, setHomeId] = useState('eemnes');
-  const [lead, setLead] = useState(null);
-  const profile = profiles.find(p => p.id === profileId);
-  const home = homes.find(h => h.id === homeId);
-  const result = useMemo(() => calc(profile), [profile]);
-  const homeMatch = useMemo(() => match(profile, home), [profile, home]);
-
-  function shareLead(){
-    setLead({profile, home, result, homeMatch});
-    setPage('share');
-  }
+  const [page, setPage] = useState('cockpit');
+  const [homeId, setHomeId] = useState('baarn');
+  const selectedHome = homes.find(h => h.id === homeId);
+  const koopklaar = 84;
 
   return <div className="app">
-    <Sidebar page={page} setPage={setPage}/>
+    <aside>
+      <div className="brand"><div className="mark">A</div><div><b>ATLAS</b><span>NEXT 2.0</span></div></div>
+      <div className="journey">
+        {journey.map(([name, score], i) => (
+          <button key={name} className={page === 'route' ? 'routebtn active' : 'routebtn'} onClick={() => setPage('route')}>
+            <span className={score >= 80 ? 'done' : score >= 60 ? 'busy' : 'todo'}>{score >= 80 ? '✓' : i+1}</span>
+            <div><b>{name}</b><small>{score}%</small></div>
+          </button>
+        ))}
+      </div>
+      <nav>
+        <button onClick={() => setPage('cockpit')} className={page === 'cockpit' ? 'on' : ''}><Compass/> Cockpit</button>
+        <button onClick={() => setPage('home')} className={page === 'home' ? 'on' : ''}><HousePlus/> Mijn woning</button>
+        <button onClick={() => setPage('matches')} className={page === 'matches' ? 'on' : ''}><Home/> Matches</button>
+        <button onClick={() => setPage('coach')} className={page === 'coach' ? 'on' : ''}><Bot/> Koopcoach</button>
+        <button onClick={() => setPage('share')} className={page === 'share' ? 'on' : ''}><Share2/> Deel ATLAS</button>
+      </nav>
+    </aside>
+
     <main>
-      <Topbar profiles={profiles} profileId={profileId} setProfileId={setProfileId}/>
-      {page === 'dashboard' && <Dashboard setPage={setPage} profile={profile} result={result} home={home} homeMatch={homeMatch}/>}
-      {page === 'atlas' && <Atlas profile={profile} result={result}/>}
-      {page === 'homes' && <Homes profile={profile} result={result} homes={homes} homeId={homeId} setHomeId={setHomeId} shareLead={shareLead}/>}
-      {page === 'share' && <Share lead={lead} setPage={setPage}/>}
-      {page === 'copilot' && <Copilot profile={profile} result={result} home={home} homeMatch={homeMatch}/>}
+      {page === 'cockpit' && <Cockpit koopklaar={koopklaar} setPage={setPage} selectedHome={selectedHome}/>}
+      {page === 'route' && <RoutePage/>}
+      {page === 'home' && <MyHome/>}
+      {page === 'matches' && <Matches homeId={homeId} setHomeId={setHomeId} selectedHome={selectedHome}/>}
+      {page === 'coach' && <Coach selectedHome={selectedHome}/>}
+      {page === 'share' && <Share selectedHome={selectedHome}/>}
     </main>
   </div>
 }
 
-function Sidebar({page,setPage}){
-  const items = [
-    ['dashboard', Home, 'Dashboard'],
-    ['atlas', UserRound, 'Mijn ATLAS'],
-    ['homes', Building2, 'Woningen'],
-    ['share', WalletCards, 'Delen'],
-    ['copilot', Bot, 'Copilot']
-  ];
-  return <aside>
-    <div className="brand">
-      <div className="mark">A</div>
-      <div><b>ATLAS</b><span>NEXT 1.0.1</span></div>
+function Cockpit({koopklaar, setPage, selectedHome}){
+  return <section>
+    <div className="hero">
+      <div>
+        <span className="kicker">ATLAS Confidence Engine</span>
+        <h1>Goedemorgen {buyer.name}.</h1>
+        <p className="lead">Je bent vandaag <b>{koopklaar}% koopklaar</b>. Nog 2 acties en je kunt je ATLAS Paspoort sterker delen met makelaars.</p>
+        <div className="actions">
+          <button onClick={() => setPage('route')}>Bekijk mijn route</button>
+          <button className="secondary" onClick={() => setPage('matches')}>Bekijk woningmatches</button>
+        </div>
+      </div>
+      <div className="scoreOrb">
+        <span>Koopklaar</span>
+        <strong>{koopklaar}</strong>
+        <Bar value={koopklaar}/>
+        <small>Confidence: 91%</small>
+      </div>
     </div>
-    <nav>
-      {items.map(([id, Icon, label]) => <button key={id} className={page === id ? 'active' : ''} onClick={() => setPage(id)}><Icon size={19}/>{label}</button>)}
-    </nav>
-    <div className="quick">
-      <b>Vandaag</b>
-      <p>Nog 2 acties om je biedklaarheid te verhogen.</p>
+
+    <div className="today">
+      <ActionCard title="Verkoopwaarde woning bevestigen" points="+9 punten" text="Bevestig je woningwaarde scan om je overwaardestatus te versterken." icon={<HousePlus/>}/>
+      <ActionCard title="Laatste salarisstrook uploaden" points="+4 punten" text="Hierdoor stijgt je documentstatus en makelaarsvertrouwen." icon={<FileText/>}/>
+      <ActionCard title="Beste match vandaag" points={`${selectedHome.match}% match`} text={`${selectedHome.title} in ${selectedHome.city}`} icon={<Home/>}/>
     </div>
-  </aside>
+
+    <div className="wideInsight">
+      <Bot/>
+      <div>
+        <b>Koopcoach Insight</b>
+        <p>Je overwaarde is belangrijker dan je salaris in deze zoektocht. Als je huidige woning eerst verkoopt, stijgt je koopruimte naar ongeveer {short(buyingPower()+45000)}.</p>
+      </div>
+      <button onClick={() => setPage('coach')}>Bekijk advies</button>
+    </div>
+  </section>
 }
 
-function Topbar({profiles, profileId, setProfileId}){
-  return <div className="topbar">
-    {profiles.map(p => {
-      const c = calc(p);
-      return <button key={p.id} className={profileId === p.id ? 'profile active' : 'profile'} onClick={() => setProfileId(p.id)}>
-        <span className="avatar">{p.short}</span>
-        <span><b>{p.name}</b><small>{p.type}</small></span>
-        <Badge level={c.level}>{c.atlas}</Badge>
-      </button>
-    })}
+function ActionCard({title, points, text, icon}){
+  return <article className="actionCard">{icon}<Badge value={80}>{points}</Badge><h3>{title}</h3><p>{text}</p></article>
+}
+
+function RoutePage(){
+  return <section>
+    <Header kicker="Koopklaar Journey" title="Niet zoeken in menu’s. Volg je route naar een nieuw huis." text="ATLAS toont stap voor stap wat klaar is, wat ontbreekt en wat de volgende beste actie is."/>
+    <div className="routeTimeline">
+      {journey.map(([name, score], i) => (
+        <div className="routeStep" key={name}>
+          <div className={'routeIcon ' + level(score)}>{score >= 80 ? <CheckCircle2/> : score >= 60 ? <AlertTriangle/> : <Circle/>}</div>
+          <div>
+            <h3>{name}</h3>
+            <p>{score >= 80 ? 'Gereed' : score >= 60 ? 'Aandacht nodig' : 'Nog starten'}</p>
+            <Bar value={score}/>
+          </div>
+          <strong>{score}%</strong>
+        </div>
+      ))}
+    </div>
+  </section>
+}
+
+function MyHome(){
+  return <section>
+    <Header kicker="Mijn Woning Engine" title="Overwaarde is pas waardevol als je weet wat inzetbaar is." text="ATLAS combineert adresdata, marktwaarde, hypotheekrestschuld en timingrisico tot vrije overwaarde."/>
+    <div className="homeEngine">
+      <div className="mapCard">
+        <Search/>
+        <h3>{buyer.address}</h3>
+        <p>Google Maps autocomplete · BAG · WOZ · Kadaster · CBS · Energielabel</p>
+      </div>
+      <div className="valuation">
+        <span>Geschatte verkoopprijs</span>
+        <strong>{euro(buyer.homeValue)}</strong>
+        <small>Bandbreedte {euro(buyer.homeValue-19000)} – {euro(buyer.homeValue+22000)}</small>
+      </div>
+      <Metric label="Hypotheekrestant" value={euro(buyer.mortgageLeft)}/>
+      <Metric label="Vrije overwaarde" value={euro(equity())}/>
+      <Metric label="Verwacht inzetbaar" value={euro(usableEquity())}/>
+      <Metric label="Scenario verkoop eerst" value={short(buyingPower()+45000)}/>
+    </div>
+  </section>
+}
+
+function Matches({homeId, setHomeId, selectedHome}){
+  return <section>
+    <Header kicker="Woning Match" title="Funda toont huizen. ATLAS toont welke huizen slim zijn." text="Elke woning krijgt een Match, Koopkans, financieringskans en context."/>
+    <div className="matchGrid">
+      <div className="cards">
+        {homes.map(h => <button key={h.id} className={homeId === h.id ? 'matchCard active' : 'matchCard'} onClick={() => setHomeId(h.id)}>
+          <img src={h.img}/>
+          <div>
+            <Badge value={h.match}>{h.match}% match</Badge>
+            <h3>{h.title}</h3>
+            <p>{h.city} · {euro(h.price)}</p>
+          </div>
+        </button>)}
+      </div>
+      <PropertyDetail home={selectedHome}/>
+    </div>
+  </section>
+}
+
+function PropertyDetail({home}){
+  return <div className="propertyDetail">
+    <img src={home.img}/>
+    <div className="propertyBody">
+      <Badge value={home.match}>{home.match}% ATLAS Match</Badge>
+      <h2>{home.title}</h2>
+      <p><MapPin/> {home.city} · {home.rooms} kamers · energielabel {home.label}</p>
+      <div className="meters">
+        <Metric label="Koopkans" value={`${home.confidence}%`}/>
+        <Metric label="Financieringskans" value={`${home.finance}%`}/>
+        <Metric label="Acceptatiekans bod" value={`${home.acceptance}%`}/>
+        <Metric label="Maandlast" value={euro(home.monthly)}/>
+      </div>
+      <div className="why">
+        <h3>Waarom past deze woning?</h3>
+        <p>✓ Overwaarde voldoende · ✓ maandlast gezond · ✓ reistijd {home.commute} · ✓ school {home.school} · ✓ waardegroei {home.growth}</p>
+      </div>
+    </div>
   </div>
 }
 
-function Dashboard({setPage, profile, result, home, homeMatch}){
-  return <section className="dashboard">
-    <div className="welcome">
-      <div>
-        <Badge level={result.level}>{result.status}</Badge>
-        <h1>Welkom {profile.name.split(' ')[0]}.</h1>
-        <p>Je ATLAS-profiel toont dat je vandaag koopklaar bent tot ongeveer <b>{short(result.budget)}</b>. De beste volgende stap staat hieronder.</p>
-      </div>
-      <div className="score-card">
-        <span>ATLAS Score</span>
-        <strong>{result.atlas}</strong>
-        <Meter value={result.atlas} level={result.level}/>
-        <small>Confidence {result.confidence}%</small>
-      </div>
-    </div>
-
-    <div className="hero-grid">
-      <article className="property-large">
-        <img src={home.img} />
-        <div>
-          <Badge level={homeMatch.level}>{homeMatch.score}% match</Badge>
-          <h2>{home.title}</h2>
-          <p><MapPin size={15}/> {home.city} · {euro(home.price)} · {home.rooms} kamers · label {home.energy}</p>
-          <div className="actions">
-            <button onClick={() => setPage('homes')}>Bekijk woning</button>
-            <button className="secondary" onClick={() => setPage('share')}>Maak paspoort</button>
-          </div>
-        </div>
-      </article>
-
-      <div className="today-stack">
-        <Mini icon={<TrendingUp/>} title={short(result.overwaarde)} text="indicatieve overwaarde"/>
-        <Mini icon={<FileText/>} title="1 document" text="vraagt aandacht"/>
-        <Mini icon={<ShieldCheck/>} title={`${homeMatch.buyChance}%`} text="koopkans geselecteerde woning"/>
-      </div>
-    </div>
-
-    <div className="insight">
-      <Bot/>
-      <div>
-        <b>ATLAS Copilot</b>
-        <p>Je koopruimte wordt vooral beïnvloed door je overwaarde, je private lease en de verkoopstatus van je huidige woning.</p>
-      </div>
-      <button onClick={() => setPage('copilot')}>Open</button>
-    </div>
-  </section>
-}
-
-function Mini({icon,title,text}){
-  return <div className="mini">{icon}<b>{title}</b><span>{text}</span></div>
-}
-
-function Atlas({profile, result}){
-  const rows = [
-    ['Financial Score', result.financial, result.level, WalletCards],
-    ['Document Vault', profile.docs, profile.docs > 80 ? 'green' : 'yellow', FileText],
-    ['Overwaarde', result.overwaarde > 150000 ? 92 : 60, result.overwaarde > 150000 ? 'green' : 'yellow', HousePlus],
-    ['Confidence', result.confidence, result.confidence > 80 ? 'green' : 'yellow', ShieldCheck],
-    ['Data Engine', 76, 'yellow', Database]
-  ];
+function Coach({selectedHome}){
   return <section>
-    <Header kicker="Mijn ATLAS" title="Je financiële identiteit in één overzicht." text="Niet alleen hypotheekruimte, maar koopklaarheid: inkomen, vermogen, documenten, overwaarde en zekerheid."/>
-    <div className="atlas-layout">
-      <div className="passport">
-        <span className="avatar big">{profile.short}</span>
-        <h2>{profile.name}</h2>
-        <p>{profile.type}</p>
-        <strong>{result.atlas}</strong>
-        <Badge level={result.level}>{result.status}</Badge>
-        <Meter value={result.atlas} level={result.level}/>
-      </div>
-      <div className="panel rows">
-        {rows.map(([label, value, level, Icon]) => <div className="row" key={label}>
-          <Icon size={20}/>
-          <span>{label}</span>
-          <b>{value}%</b>
-          <Meter value={value} level={level}/>
-        </div>)}
-      </div>
+    <Header kicker="ATLAS Koopcoach" title="Geen chatbot. Een coach die vooruit denkt." text="ATLAS vertaalt je profiel naar concrete keuzes."/>
+    <div className="coachGrid">
+      <CoachCard q="Wat moet ik nu doen?" a="Bevestig eerst de verkoopwaarde van je huidige woning. Dat verhoogt je koopklaarheid met ongeveer 9 punten."/>
+      <CoachCard q="Kan ik deze woning betalen?" a={`${selectedHome.title} is financieel mogelijk onder voorwaarden. Je overwaarde maakt het verschil, maar timing verkoop blijft belangrijk.`}/>
+      <CoachCard q="Is dit slim?" a="Baarn is slimmer dan Laren binnen jouw profiel: lagere maandlast, hogere financieringskans en minder overbruggingsdruk."/>
     </div>
   </section>
 }
 
-function Homes({profile, result, homes, homeId, setHomeId, shareLead}){
-  const selected = homes.find(h => h.id === homeId);
-  const selectedMatch = match(profile, selected);
+function CoachCard({q,a}){return <article className="coachCard"><Bot/><h3>{q}</h3><p>{a}</p></article>}
+
+function Share({selectedHome}){
   return <section>
-    <Header kicker="Woningen" title="Zoek niet op prijs. Zoek op haalbaarheid." text="Elke woning krijgt een ATLAS Match, koopkans en concrete vervolgstap."/>
-    <div className="homes-layout">
-      <div className="home-list">
-        {homes.map(h => {
-          const m = match(profile, h);
-          return <button key={h.id} className={homeId === h.id ? 'home-row active' : 'home-row'} onClick={() => setHomeId(h.id)}>
-            <img src={h.img}/>
-            <div><b>{h.title}</b><span>{h.city} · {euro(h.price)}</span></div>
-            <Badge level={m.level}>{m.score}%</Badge>
-          </button>
-        })}
+    <Header kicker="Deel mijn ATLAS" title="Een live paspoort voor de makelaar." text="Geen BSN. Geen loonstroken. Wel vertrouwen."/>
+    <div className="shareGrid">
+      <div className="livePassport">
+        <LockKeyhole/>
+        <h2>ATLAS Passport</h2>
+        <p>{buyer.fullName}</p>
+        <strong>91</strong>
+        <Badge value={91}>Sterke koper</Badge>
       </div>
-      <div className="home-detail">
-        <img src={selected.img}/>
-        <div className="home-detail-body">
-          <Badge level={selectedMatch.level}>{selectedMatch.label}</Badge>
-          <h2>{selected.title}</h2>
-          <p>{selected.city} · {selected.rooms} kamers · energielabel {selected.energy}</p>
-          <div className="metrics">
-            <Metric label="Prijs" value={euro(selected.price)}/>
-            <Metric label="Jouw bandbreedte" value={short(result.budget)}/>
-            <Metric label="Koopkans" value={`${selectedMatch.buyChance}%`}/>
-          </div>
-          <div className="actions">
-            <button onClick={shareLead}><Send size={17}/> Deel paspoort</button>
-            <button className="secondary">Final check</button>
-          </div>
-        </div>
+      <div className="shareFacts">
+        <Fact icon={<ShieldCheck/>} label="Identiteit" value="Geverifieerd"/>
+        <Fact icon={<FileText/>} label="Documenten" value="82% compleet"/>
+        <Fact icon={<HousePlus/>} label="Overwaarde" value={euro(equity())}/>
+        <Fact icon={<Home/>} label="Woning" value={selectedHome.title}/>
+        <Fact icon={<Send/>} label="Advies" value="Plan bezichtiging"/>
       </div>
     </div>
   </section>
 }
 
-function Share({lead, setPage}){
-  if(!lead) return <section><Header kicker="Delen" title="Nog geen paspoort gedeeld." text="Kies eerst een woning en deel daarna je ATLAS Paspoort."/><button onClick={() => setPage('homes')}>Naar woningen</button></section>
-  return <section>
-    <Header kicker="Biedklaar Paspoort" title="Klaar om met de makelaar te delen." text="Niet je volledige dossier, wel genoeg om serieus genomen te worden."/>
-    <div className="share-card">
-      <div className="passport dark">
-        <span className="avatar big">{lead.profile.short}</span>
-        <h2>{lead.profile.name}</h2>
-        <p>{lead.home.title}</p>
-        <strong>{lead.result.atlas}</strong>
-        <Badge level={lead.result.level}>{lead.result.status}</Badge>
-      </div>
-      <div className="panel">
-        <Metric label="Indicatieve bandbreedte" value={short(lead.result.budget)}/>
-        <Metric label="Koopkans" value={`${lead.homeMatch.buyChance}%`}/>
-        <Metric label="Confidence" value={`${lead.result.confidence}%`}/>
-        <Metric label="Advies makelaar" value={lead.homeMatch.level === 'green' ? 'Plan bezichtiging' : 'Check voorwaarden'}/>
-      </div>
-    </div>
-  </section>
-}
-
-function Copilot({profile, result, home, homeMatch}){
-  return <section>
-    <Header kicker="ATLAS Copilot" title="Je persoonlijke koopcoach." text="Geen algemene chatbot, maar advies op basis van jouw profiel, woning en doorstromerstatus."/>
-    <div className="copilot-grid">
-      <div className="panel prompts">
-        <button>Waarom past deze woning wel/niet?</button>
-        <button>Wat moet ik eerst regelen?</button>
-        <button>Hoeveel overwaarde kan ik gebruiken?</button>
-      </div>
-      <div className="panel answer">
-        <Bot/>
-        <h3>Analyse voor {home.title}</h3>
-        <p>Je huidige ATLAS-bandbreedte is {short(result.budget)}. Deze woning heeft een koopkans van {homeMatch.buyChance}%. De grootste aandachtspunten zijn je verkoopstatus, private lease en documentstatus.</p>
-        <div className="callout"><AlertTriangle/> Volgende stap: maak je Document Vault compleet en check je overbruggingsscenario.</div>
-      </div>
-    </div>
-  </section>
-}
-
-function Metric({label,value}){return <div className="metric"><span>{label}</span><b>{value}</b></div>}
+function Metric({label, value}){return <div className="metric"><span>{label}</span><b>{value}</b></div>}
+function Fact({icon,label,value}){return <div className="fact">{icon}<span>{label}</span><b>{value}</b></div>}
 function Header({kicker,title,text}){return <div className="header"><span>{kicker}</span><h2>{title}</h2><p>{text}</p></div>}
 
 createRoot(document.getElementById('root')).render(<App/>);
