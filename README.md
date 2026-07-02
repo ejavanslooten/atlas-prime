@@ -1,20 +1,16 @@
-# ATLAS NEXT 2.5
+# ATLAS NEXT 2.6
 
-Voortbouwend op NEXT 2.4.
+Voortbouwend op NEXT 2.5.
 
 Nieuw:
-- Document Vault dynamisch per type koper
-- Starter krijgt geen huidige-woning-documenten
-- Doorstromer krijgt huidige woning documenten
-- ZZP krijgt jaarstukken / IB-aangiftes / prognose
-- Select/dropdown velden vervangen door professionele ATLAS-keuzekaarten
-- Overuren uit standaard scherm; nu onder Extra inkomen toevoegen
-- Google Maps demo/adresselectie gefixt
-- Adresselectie vult woningwaarde, WOZ, postcode, type, label en kaart
-- Nieuwe Funda-achtige cockpit zoeklaag
-- Nieuwe pagina Marktinzicht / Koopkansen
-- Koopcoach koppelt aan marktalternatieven
-- Woonwensen verder Funda-achtig
+- ATLAS Kooproute: duidelijke flow "Stap X van 12"
+- Boven elke pagina een routebalk naar biedklaar
+- Elke pagina eindigt met een "Volgende beste actie"
+- Resultaat intake stuurt direct door naar Documenten / Marktinzicht
+- Document Vault stuurt onderaan naar de logische vervolgstap
+- Adviesprofiel eindigt met een duidelijke CTA
+- ATLAS onderscheidender gepositioneerd: geen Funda-kopie, maar koopkans-laag bovenop woningzoeken
+- Cockpit herpositioneerd als "Funda toont aanbod, ATLAS maakt kopers koopklaar"
 
 Vercel:
 Framework: Vite
