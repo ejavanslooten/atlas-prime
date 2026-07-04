@@ -1,21 +1,18 @@
-# ATLAS NEXT 2.9
+# ATLAS NEXT 3.0
 
-Voortbouwend op NEXT 2.8.
+Eerste serieuze demo-release.
 
-Nieuw:
-- Geen directe vergelijking of sneer naar Funda / woningplatforms
-- Professionelere homepage-tekst: ATLAS als kooppositie- en vertrouwenslaag
-- Homepage zoekbalk heeft nu autocomplete vanaf 2 letters
-- Suggesties voor plaats, adres en woning
-- Startknop verandert naar “Check koopkans in …”
-- Nieuwe route: Woonlasten onder druk
-- Gevoelige levenssituaties verder aangescherpt
-- Bij weduwe/weduwnaar of gescheiden:
-  - geen vraag “Partner aanwezig”
-  - geen partnernaam/geboortedatum
-  - geen partnerinkomen
-  - wel rustige vragen over kinderen/afhankelijken en eventueel nabestaandenpensioen/uitkering
-- Document Vault en route blijven dynamisch per type koper
+Nieuw in NEXT 3.0:
+- Premium visuele polish voor de demo
+- Menselijke check-in halverwege de kooproute
+- Geen “later invullen”-escape; wel rust, uitleg en extra ondersteuning
+- ATLAS Assistent als persoonlijke koopbegeleider
+- Aangepaste taal bij gevoelige situaties
+- Professioneler ATLAS Paspoort
+- Eerste echte Makelaarview
+- Duidelijke privacygrens: makelaar ziet status en vertrouwen, geen ruwe dossiers
+- Woonlasten onder druk route toegevoegd aan profielkeuze
+- Route loopt door tot makelaarsweergave
 
 Vercel:
 Framework: Vite

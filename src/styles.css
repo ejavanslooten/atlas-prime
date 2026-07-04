@@ -117,7 +117,7 @@ section,.panel,.card,.metric,.valuation,.propertyDetail,.livePassport,.shareFact
 }
 
 
-/* ATLAS NEXT 2.9 — professionele positionering, homepage autocomplete en gevoeligere routes */
+/* ATLAS NEXT 3.0 — professionele positionering, homepage autocomplete en gevoeligere routes */
 .heroSearchWrap{position:relative;max-width:760px}
 .homeSuggest{position:absolute;left:0;right:0;top:68px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:8px;box-shadow:0 22px 70px rgba(20,44,39,.16);z-index:10;display:grid;gap:6px}
 .homeSuggest button{background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:11px 12px;text-align:left;justify-content:flex-start;display:grid;grid-template-columns:20px 1fr;gap:10px}
@@ -133,4 +133,76 @@ section,.panel,.card,.metric,.valuation,.propertyDetail,.livePassport,.shareFact
 @media(max-width:900px){
  .homeSuggest{position:relative;top:auto;margin-top:8px}
  .heroSearchWrap{max-width:100%}
+}
+
+
+/* ATLAS NEXT 3.0 — premium demo-release, menselijke check-in, assistent en makelaarsview */
+:root{--premium:#0f3f36;--softgold:#c7ab72}
+body{background:
+ radial-gradient(circle at 18% -10%,rgba(168,195,178,.35),transparent 34%),
+ radial-gradient(circle at 95% 12%,rgba(199,171,114,.15),transparent 30%),
+ linear-gradient(180deg,#fbfaf5,#f4f3ec 45%,#eef3ef)}
+aside{background:rgba(255,255,255,.78);backdrop-filter:blur(18px);border-right:1px solid rgba(16,61,53,.08)}
+.brand .mark{box-shadow:0 18px 40px rgba(16,61,53,.20)}
+section{animation:atlasFade .25s ease both}
+@keyframes atlasFade{from{opacity:.65;transform:translateY(6px)}to{opacity:1;transform:none}}
+.atlasHero{background:linear-gradient(135deg,#fffdf8 0%,#f4f7f1 48%,#e7f0ea 100%);border:1px solid rgba(16,61,53,.10);box-shadow:0 30px 90px rgba(20,44,39,.10)}
+.atlasHero h1{letter-spacing:-.06em}
+.card,.panel,.adviceWizard,.journeyFlow,.nextStep,.doc,.propertyDetail,.livePassport,.shareFacts,.passportExplain div{box-shadow:0 20px 60px rgba(20,44,39,.07)}
+.heroModes span{border:1px solid rgba(16,61,53,.10)}
+.scoreOrb{background:linear-gradient(160deg,#103d35,#1f6b5b);box-shadow:0 28px 70px rgba(16,61,53,.24)}
+.wizardTabs button,.choice,.toggle,.field div,.homeSuggest button{transition:.16s ease}
+.wizardTabs button:hover,.choice:hover,.toggle:hover,.homeSuggest button:hover{transform:translateY(-1px)}
+.passportHero{display:grid;grid-template-columns:360px minmax(0,1fr);gap:18px;margin-bottom:18px}
+.passportCardPro{background:linear-gradient(160deg,#103d35,#1e6b5b);color:#fff;border-radius:34px;padding:28px;box-shadow:0 28px 70px rgba(16,61,53,.22);min-height:320px;display:flex;flex-direction:column;justify-content:space-between}
+.passportTop{display:flex;justify-content:space-between;align-items:center;color:#dbeee8;font-weight:900;text-transform:uppercase;letter-spacing:.12em;font-size:11px}
+.passportCardPro h2{color:#fff;margin:22px 0 2px}
+.passportCardPro p,.passportCardPro small{color:#deeee8}
+.passportCardPro strong{font-size:86px;letter-spacing:-.08em;line-height:.9}
+.passportNarrative{background:#fff;border:1px solid var(--line);border-radius:34px;padding:28px;box-shadow:var(--shadow)}
+.passportNarrative h3,.humanCopy h3,.agentSide h3{color:var(--brand);font-size:26px;margin:0 0 8px}
+.privacySplit{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.privacySplit div{background:var(--sage);border:1px solid var(--line);border-radius:22px;padding:16px}
+.privacySplit b{display:block;color:var(--brand);margin-bottom:4px}
+.privacySplit span{color:var(--muted);font-size:14px}
+.privacySplit.vertical{grid-template-columns:1fr}
+.shareGrid.refined{grid-template-columns:minmax(0,1fr) 360px}
+.humanCopy{background:linear-gradient(135deg,#fffdf8,#f6efe7);border:1px solid #e5d6c4;border-radius:28px;padding:22px;box-shadow:var(--shadow)}
+.humanCopy svg{color:#8f6536}
+.modalLayer{position:fixed;inset:0;background:rgba(12,32,28,.35);backdrop-filter:blur(10px);display:grid;place-items:center;z-index:100;padding:22px}
+.checkCard,.assistantModal{width:min(760px,100%);background:#fffdf8;border:1px solid rgba(16,61,53,.12);border-radius:34px;box-shadow:0 40px 120px rgba(12,32,28,.28);padding:30px;position:relative}
+.closeMini{position:absolute;right:18px;top:16px;width:34px;height:34px;border-radius:999px;background:#fff;color:var(--brand);border:1px solid var(--line);padding:0;font-size:22px}
+.checkCard h2,.assistantModal h2{color:var(--brand);font-size:38px;letter-spacing:-.05em;margin:6px 0 8px}
+.checkCard p{font-size:18px}
+.checkActions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.checkActions button,.assistFoot button{justify-content:center}
+.whyBox{display:flex;gap:12px;background:var(--sage);border:1px solid var(--line);border-radius:22px;padding:15px;margin-top:16px}
+.whyBox svg{color:var(--brand);flex:0 0 auto}
+.whyBox b{color:var(--brand)}
+.whyBox p{font-size:14px;margin:2px 0 0}
+.assistantModal{width:min(860px,100%);background:linear-gradient(180deg,#fffdf8,#f4f7f1)}
+.assistantHead{display:flex;justify-content:space-between;gap:16px}
+.assistantHead span{display:block;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:950;color:var(--muted)}
+.assistantHead p{margin:0;color:var(--muted)}
+.assistantBody{background:#fff;border:1px solid var(--line);border-radius:26px;padding:16px;display:grid;gap:10px;margin:18px 0;max-height:280px;overflow:auto}
+.bubble{max-width:82%;padding:12px 14px;border-radius:18px;font-weight:750;line-height:1.45}
+.bubble.atlas{background:var(--sage);color:var(--brand);justify-self:start}
+.bubble.user{background:var(--brand);color:#fff;justify-self:end}
+.assistChoices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.assistChoices button{background:#fff;color:var(--brand);border:1px solid var(--line);justify-content:flex-start;text-align:left}
+.assistFoot{display:flex;justify-content:space-between;gap:10px;margin-top:16px;flex-wrap:wrap}
+.agentGrid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:18px}
+.agentPassport,.agentSide{background:#fff;border:1px solid var(--line);border-radius:34px;padding:26px;box-shadow:var(--shadow)}
+.agentHeader{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:20px}
+.agentHeader span{display:block;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:950;color:var(--muted)}
+.agentHeader h2{margin:5px 0 3px;color:var(--brand)}
+.agentScore{display:grid;grid-template-columns:130px 1fr;gap:18px;align-items:center;background:linear-gradient(135deg,#fffdf8,var(--sage));border:1px solid var(--line);border-radius:26px;padding:18px;margin-bottom:18px}
+.agentScore strong{font-size:70px;letter-spacing:-.08em;color:var(--brand)}
+.agentScore p{margin:6px 0 0}
+.agentFacts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.agentSide button{width:100%;justify-content:center;margin-top:16px}
+@media(max-width:1100px){
+ .passportHero,.shareGrid.refined,.agentGrid,.agentFacts,.privacySplit,.checkActions,.assistChoices{grid-template-columns:1fr}
+ .passportCardPro{min-height:260px}
+ .checkCard h2,.assistantModal h2{font-size:30px}
 }
