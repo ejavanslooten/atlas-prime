@@ -206,3 +206,50 @@ section{animation:atlasFade .25s ease both}
  .passportCardPro{min-height:260px}
  .checkCard h2,.assistantModal h2{font-size:30px}
 }
+
+
+/* ATLAS NEXT 3.1 — productkwaliteit, begeleiding en realistische matches */
+.fieldHelp{margin:-2px 0 10px;color:var(--muted);font-size:13px}
+.field input[type=number]::-webkit-outer-spin-button,
+.field input[type=number]::-webkit-inner-spin-button{appearance:none;margin:0}
+.field input[type=number]{appearance:textfield}
+.choices.multi .choice.active{box-shadow:inset 0 0 0 2px #b8d2c1}
+.rangeAdvisor{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;background:linear-gradient(135deg,#fffdf8,var(--sage));border:1px solid var(--line);border-radius:24px;padding:16px;margin:14px 0 18px}
+.rangeAdvisor>div{display:flex;gap:12px;align-items:flex-start}
+.rangeAdvisor svg{color:var(--brand);flex:0 0 auto}
+.rangeAdvisor b{display:block;color:var(--brand);font-size:18px}
+.rangeAdvisor p{margin:2px 0 0}
+.rangeAdvisor small{color:var(--muted);font-weight:800}
+.rangeAdvisor button{white-space:nowrap}
+.marketRow{grid-template-columns:120px 110px 110px 100px 90px minmax(180px,1fr) auto!important}
+.marketRow .rowAction{padding:10px 13px;white-space:nowrap}
+.matchCard small{display:block;color:var(--muted);font-weight:800;margin-top:5px}
+.emptyState,.outsideBox{background:#fff;border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:var(--shadow)}
+.emptyState svg{color:var(--brand)}
+.emptyState b{display:block;color:var(--brand);font-size:20px;margin:6px 0}
+.outsideBox{display:grid;gap:10px}
+.outsideHome{display:grid;grid-template-columns:74px 1fr;gap:12px;align-items:center;border:1px solid var(--line);border-radius:18px;padding:10px;background:#fff7f4}
+.outsideHome img{width:74px;height:62px;object-fit:cover;border-radius:14px}
+.outsideHome b{display:block;color:var(--ink)}
+.outsideHome span,.outsideHome small{display:block;color:var(--muted);font-size:13px}
+.why.warning{background:var(--red-bg);color:var(--red)}
+.why.warning p{color:#6f302c}
+.clearFilter{margin:-6px 0 16px}
+.assistantFloat{position:fixed;right:24px;bottom:24px;z-index:90;background:linear-gradient(135deg,#103d35,#1f6b5b);color:white;border-radius:24px;padding:13px 16px;box-shadow:0 24px 80px rgba(16,61,53,.28);display:flex;align-items:center;gap:10px}
+.assistantFloat span{display:grid;text-align:left;line-height:1.1}
+.assistantFloat b{font-size:14px}
+.assistantFloat small{font-size:12px;color:#dceee8;margin-top:3px}
+.fact{grid-template-columns:34px minmax(0,1fr)!important;align-items:start}
+.fact b{grid-column:2;display:block;min-width:0;word-break:break-word;line-height:1.2;margin-top:2px}
+.fact span{grid-column:2;display:block;line-height:1.2}
+.fact svg{grid-row:1 / span 2;margin-top:2px}
+.agentFacts .fact{min-height:86px}
+.atlasHero{padding-top:66px}
+.atlasHero:before{left:46px!important;right:auto!important;top:24px!important}
+.scoreOrb{margin-top:8px}
+@media(max-width:1100px){
+ .rangeAdvisor,.marketRow{grid-template-columns:1fr!important}
+ .rangeAdvisor button,.marketRow .rowAction{width:100%;justify-content:center}
+ .assistantFloat{right:16px;bottom:16px}
+ .atlasHero:before{left:22px!important;top:20px!important}
+}
