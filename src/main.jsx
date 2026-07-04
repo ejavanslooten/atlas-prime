@@ -1,7 +1,7 @@
 
 import React,{useMemo,useState}from"react";
 import{createRoot}from"react-dom/client";
-import{Home,HousePlus,Bot,Share2,Compass,FileText,ShieldCheck,Send,UploadCloud,UserRound,Plus,Trash2,LockKeyhole,CheckCircle2,AlertTriangle,Users,MapPin,ChevronRight,Search,Eye,Clock3,ExternalLink,Landmark,Navigation,MapPinned,ShieldAlert,TrendingUp,Building2,SlidersHorizontal,Sparkles,BriefcaseBusiness,WalletCards,BarChart3,Info,Euro,HeartHandshake}from"lucide-react";
+import{Home,HousePlus,Bot,Share2,Compass,FileText,ShieldCheck,Send,UploadCloud,UserRound,Plus,Trash2,LockKeyhole,CheckCircle2,AlertTriangle,Users,MapPin,ChevronRight,Search,Eye,Clock3,ExternalLink,Landmark,Navigation,MapPinned,ShieldAlert,TrendingUp,Building2,SlidersHorizontal,Sparkles,BriefcaseBusiness,WalletCards,BarChart3,Info,Euro,HeartHandshake,PieChart}from"lucide-react";
 import"./styles.css";
 
 const addressBook=[

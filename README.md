@@ -24,3 +24,6 @@ Output directory: dist
 Aanvullende patch:
 - Marktinzicht gebruikt geen labels Gemiddeld / Hoog / Zeer hoog meer.
 - Gemeentes tonen nu een percentage ATLAS Match: 100% is perfecte match.
+
+Runtime fix:
+- Blanco scherm opgelost: PieChart icoon werd gebruikt maar niet geïmporteerd.
