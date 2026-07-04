@@ -253,3 +253,43 @@ section{animation:atlasFade .25s ease both}
  .assistantFloat{right:16px;bottom:16px}
  .atlasHero:before{left:22px!important;top:20px!important}
 }
+
+
+/* ATLAS NEXT 3.2 — concierge startbeleving en heldere marktlogica */
+.newBuyer{width:100%;justify-content:center;margin:14px 0 12px;border-radius:22px;padding:14px 16px;box-shadow:0 16px 42px rgba(16,61,53,.18)}
+.conciergeStart{position:relative;overflow:hidden;background:linear-gradient(135deg,#fffdf8,#eef6ef);border:1px solid rgba(16,61,53,.12);border-radius:24px;padding:18px 16px;margin:0 0 10px;box-shadow:0 16px 50px rgba(20,44,39,.08)}
+.conciergeStart h3{font-size:22px;line-height:1.08;letter-spacing:-.04em;color:var(--brand);margin:0 0 10px}
+.conciergeStart p{margin:0;color:var(--muted);font-weight:750;font-size:14px;line-height:1.45}
+.leafGhost{position:absolute;right:12px;top:4px;color:rgba(16,61,53,.08);font-size:72px;line-height:1;transform:rotate(-20deg);font-family:serif}
+.routeCards{display:grid;gap:7px;margin:10px 0 14px}
+.routeCard{display:grid!important;grid-template-columns:24px 1fr 16px!important;gap:10px!important;align-items:center!important;width:100%;background:rgba(255,255,255,.84)!important;color:var(--ink)!important;border:1px solid rgba(16,61,53,.10)!important;border-radius:18px!important;padding:11px 12px!important;text-align:left!important;box-shadow:none!important}
+.routeCard:hover{transform:translateY(-1px);background:#fff!important;box-shadow:0 12px 34px rgba(20,44,39,.08)!important}
+.routeCard.active{background:linear-gradient(135deg,#e8f2eb,#fffdf8)!important;border-color:#b9d2c1!important}
+.routeCard.sensitive{background:linear-gradient(135deg,#fffdf8,#f7efe4)!important}
+.routeCard svg{color:var(--brand)}
+.routeCard span{display:grid;gap:1px;min-width:0}
+.routeCard b{font-size:15px;color:var(--brand);line-height:1.15}
+.routeCard small{font-size:12px;color:var(--muted);line-height:1.18}
+aside nav{margin-top:8px}
+aside nav button:first-child{display:none}
+.marketRow.disabled{opacity:.82;background:#fbf8f1}
+.marketRow.disabled .rowAction{background:#e9e2d6!important;color:#87745e!important;cursor:not-allowed;box-shadow:none}
+.pressureTag{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:8px 11px;font-size:12px;font-weight:950;white-space:nowrap}
+.pressureTag.green{background:#e4f0e8;color:#1f6b4e}
+.pressureTag.yellow{background:#f2ead6;color:#785a21}
+.pressureTag.red{background:#f3dfdc;color:#8a3931}
+.marketRow p{font-size:14px}
+.emptyState{background:linear-gradient(135deg,#fffdf8,#f5f0e8)}
+.emptyState b{font-size:22px}
+.outsideBox>button{width:100%;justify-content:center}
+@media(max-width:1100px){
+ .routeCard{grid-template-columns:22px 1fr 16px!important}
+ .conciergeStart h3{font-size:20px}
+}
+
+
+/* ATLAS NEXT 3.2 patch — marktlabels als percentages */
+.matchPercent{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:950;white-space:nowrap}
+.matchPercent.strong{background:#e4f0e8;color:#1f6b4e}
+.matchPercent.mid{background:#f2ead6;color:#785a21}
+.matchPercent.low{background:#f3dfdc;color:#8a3931}

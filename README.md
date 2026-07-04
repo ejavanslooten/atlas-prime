@@ -1,23 +1,26 @@
-# ATLAS NEXT 3.1
+# ATLAS NEXT 3.2
 
-Gebouwd op NEXT 3.0.
+Gebouwd op NEXT 3.1.
 
-Belangrijkste verbeteringen:
-- Geldvelden en getalvelden zijn nu normaal te wijzigen; de vaste 0 blokkeert niet meer.
-- Getallen mogen niet negatief worden, onder andere bij aantal kinderen.
-- Woonwensen heeft een ATLAS-zoekrange met comfortabel / maximaal indicatief.
-- Knop: “Gebruik mijn ATLAS-bandbreedte”.
-- Woningtype is multi-select.
-- Marktinzicht heeft per gemeente een knop “Bekijk woningen”.
-- Woningmatches zijn strenger op echte kooppositie.
-- Bij “Woonlasten onder druk” worden dure, onrealistische woningen niet meer als normale match getoond.
-- Woningen buiten bereik staan apart onder “Buiten huidige kooppositie”.
-- ATLAS Assistent is altijd zichtbaar rechtsonder.
-- Makelaarview fact-cards zijn responsive gemaakt zodat iconen en tekst niet overlappen.
-- Hero-badge spacing gefixt.
-- Extra premium/menselijke begeleiding: ATLAS voelt meer als persoonlijke service dan als formulier.
+Nieuw:
+- Linksboven is nu een warme concierge-start in plaats van een koud menu.
+- Welkomstkaart: “Hallo Erik, fijn dat je er bent.”
+- Routekeuzes zijn premium service-kaarten met icoon, subtitel en pijl.
+- “Woonlasten onder druk” is vervangen door “Financiële ruimte verkennen”.
+- Deze route voelt discreter: “Discreet overzicht, meer rust.”
+- Marktinzicht maakt nu duidelijk onderscheid tussen:
+  - Marktdruk: concurrentie in de gemeente
+  - ATLAS Kans: past dit bij jouw persoonlijke kooppositie?
+- Gemeenten zonder persoonlijke kans tonen geen normale “Bekijk woningen”-actie bij de discrete financiële route.
+- Bij Laren/Zeer hoog wordt geen buiten-bereik woning meer automatisch als match geopend.
+- Woningmatches tonen bij geen kans liever een rustige uitleg dan een schijnmatch.
+- Extra polish voor het 3-Michelin-servicegevoel: persoonlijker, rustiger, meer begeleid.
 
 Vercel:
 Framework: Vite
 Build command: npm run build
 Output directory: dist
+
+Aanvullende patch:
+- Marktinzicht gebruikt geen labels Gemiddeld / Hoog / Zeer hoog meer.
+- Gemeentes tonen nu een percentage ATLAS Match: 100% is perfecte match.
