@@ -293,3 +293,56 @@ aside nav button:first-child{display:none}
 .matchPercent.strong{background:#e4f0e8;color:#1f6b4e}
 .matchPercent.mid{background:#f2ead6;color:#785a21}
 .matchPercent.low{background:#f3dfdc;color:#8a3931}
+
+
+/* ATLAS NEXT 3.3 — oordeelvrij, vijf jaar vooruit, 3-Michelin-servicegevoel */
+.conciergeStart.future{background:
+ radial-gradient(circle at 92% 6%,rgba(199,171,114,.18),transparent 34%),
+ linear-gradient(135deg,#fffdf8,#eef6ef 68%,#f8f2e7);
+ border-color:rgba(16,61,53,.14);
+}
+.microLabel{display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.14em;font-size:10px;font-weight:950;color:#8b7452;margin-bottom:9px}
+.acceptanceNote{display:grid;grid-template-columns:22px 1fr;gap:9px;align-items:start;background:#fffdf8;border:1px solid rgba(199,171,114,.28);border-radius:18px;padding:11px 12px;margin:2px 0 14px;color:var(--brand)}
+.acceptanceNote p{margin:0;font-size:12.5px;font-weight:800;line-height:1.35;color:#4f6359}
+.futureHero{background:
+ radial-gradient(circle at 88% 14%,rgba(199,171,114,.18),transparent 26%),
+ linear-gradient(135deg,#fffdf8 0%,#f5f8f1 42%,#e7f1ea 100%)}
+.futureHero h1{max-width:760px}
+.toneCard{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.82);border:1px solid rgba(16,61,53,.10);border-radius:24px;padding:15px 16px;margin:18px 0;max-width:760px;box-shadow:0 18px 55px rgba(20,44,39,.08)}
+.toneCard svg{color:var(--brand);flex:0 0 auto}
+.toneCard b{display:block;color:var(--brand);font-size:17px;margin-bottom:3px}
+.toneCard span{display:block;color:var(--muted);font-weight:760;line-height:1.45}
+.serviceOrb{background:linear-gradient(160deg,#103d35,#1f6b5b);color:#fff;border-radius:34px;padding:26px;box-shadow:0 28px 70px rgba(16,61,53,.24);align-self:stretch;display:flex;flex-direction:column;justify-content:center;min-width:280px}
+.serviceOrb span{font-weight:900;color:#dceee8;text-transform:uppercase;letter-spacing:.12em;font-size:11px}
+.serviceOrb strong{font-size:96px;letter-spacing:-.08em;line-height:.9;margin:12px 0}
+.serviceOrb small,.serviceOrb p{color:#dceee8}
+.serviceOrb p{font-size:14px;font-weight:760;line-height:1.4;margin:12px 0 0}
+.acceptanceBanner{display:flex;gap:13px;align-items:flex-start;background:linear-gradient(135deg,#fffdf8,#f4f0e7);border:1px solid rgba(199,171,114,.28);border-radius:26px;padding:16px 18px;margin-bottom:16px;box-shadow:0 14px 46px rgba(20,44,39,.06)}
+.acceptanceBanner svg{color:#8f6536;flex:0 0 auto}
+.acceptanceBanner b{display:block;color:var(--brand);font-size:18px;margin-bottom:3px}
+.acceptanceBanner p{margin:0;color:var(--muted);font-weight:760}
+.conciergeDock{position:fixed;right:24px;bottom:24px;z-index:90;display:flex;gap:10px;align-items:center}
+.mentorPulse{background:#fffdf8;color:var(--brand);border:1px solid rgba(199,171,114,.35);border-radius:22px;padding:13px 15px;box-shadow:0 22px 70px rgba(20,44,39,.18);display:flex;align-items:center;gap:9px;font-weight:950}
+.mentorPanel{position:fixed;right:24px;bottom:94px;width:min(390px,calc(100vw - 36px));z-index:91;background:linear-gradient(180deg,#fffdf8,#f5f7f1);border:1px solid rgba(16,61,53,.14);border-radius:30px;box-shadow:0 34px 110px rgba(12,32,28,.25);padding:22px}
+.mentorPanel h3{color:var(--brand);font-size:25px;line-height:1.05;margin:4px 0 8px;letter-spacing:-.04em}
+.mentorPanel p{color:var(--muted);font-weight:760;line-height:1.48;margin:0 0 12px}
+.panelClose{right:13px;top:12px}
+.mentorLine{display:flex;gap:8px;align-items:center;background:#eaf3ed;border:1px solid var(--line);border-radius:16px;padding:10px;margin:12px 0;color:var(--brand);font-weight:900;font-size:13px}
+.mentorActions{display:grid;gap:7px;margin:12px 0}
+.mentorActions button{background:#fff;color:var(--brand);border:1px solid var(--line);justify-content:space-between;padding:10px 12px;border-radius:15px;box-shadow:none;text-align:left}
+.mentorPrimary{width:100%;justify-content:center;margin-top:6px}
+.assistantModal.concierge{background:
+ radial-gradient(circle at 90% 10%,rgba(199,171,114,.16),transparent 32%),
+ linear-gradient(180deg,#fffdf8,#f4f7f1)}
+.trustExperience{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+.trustExperience>div{background:#fff;border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:0 18px 55px rgba(20,44,39,.07)}
+.trustExperience svg{color:var(--brand)}
+.trustExperience h3{color:var(--brand);margin:10px 0 6px;font-size:20px}
+.trustExperience p{margin:0;color:var(--muted);font-weight:760;line-height:1.45}
+.routeCard small{line-height:1.25}
+@media(max-width:1100px){
+ .trustExperience{grid-template-columns:1fr}
+ .conciergeDock{right:16px;bottom:16px;flex-direction:column;align-items:flex-end}
+ .mentorPanel{right:16px;bottom:130px}
+ .serviceOrb strong{font-size:72px}
+}

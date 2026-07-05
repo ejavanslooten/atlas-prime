@@ -1,29 +1,27 @@
-# ATLAS NEXT 3.2
+# ATLAS NEXT 3.3
 
-Gebouwd op NEXT 3.1.
+Gebouwd op NEXT 3.2 FIXED.
+
+Hoofdprincipe:
+Jouw situatie is het vertrekpunt. ATLAS begeleidt zonder oordeel naar eerlijke duidelijkheid.
 
 Nieuw:
-- Linksboven is nu een warme concierge-start in plaats van een koud menu.
-- Welkomstkaart: “Hallo Erik, fijn dat je er bent.”
-- Routekeuzes zijn premium service-kaarten met icoon, subtitel en pijl.
-- “Woonlasten onder druk” is vervangen door “Financiële ruimte verkennen”.
-- Deze route voelt discreter: “Discreet overzicht, meer rust.”
-- Marktinzicht maakt nu duidelijk onderscheid tussen:
-  - Marktdruk: concurrentie in de gemeente
-  - ATLAS Kans: past dit bij jouw persoonlijke kooppositie?
-- Gemeenten zonder persoonlijke kans tonen geen normale “Bekijk woningen”-actie bij de discrete financiële route.
-- Bij Laren/Zeer hoog wordt geen buiten-bereik woning meer automatisch als match geopend.
-- Woningmatches tonen bij geen kans liever een rustige uitleg dan een schijnmatch.
-- Extra polish voor het 3-Michelin-servicegevoel: persoonlijker, rustiger, meer begeleid.
+- ATLAS voelt meer als een persoonlijke woonbegeleider dan als formulier.
+- Nieuwe oordeelvrije startbeleving linksboven.
+- Routekeuzes zijn herschreven vanuit de vraag: “waar wil je vandaag duidelijkheid over?”
+- Acceptatiekaart: geen oordeel, geen schaamte, eerlijk over haalbaarheid.
+- Nieuwe begeleidingsdock rechtsonder:
+  - Begeleiding
+  - ATLAS Assistent
+- Nieuwe MentorPanel met contextuele hulp en snelle acties.
+- ATLAS Assistent herschreven als persoonlijke begeleider, niet als chatbot.
+- Homepage/Cockpit herschreven: ATLAS loopt vijf jaar vooruit op begeleiding, vertrouwen en timing.
+- Privacy als luxe-ervaring op ATLAS Paspoort.
+- Oordeelvrije microcopy bij profiel, check-in, matches en gevoelige routes.
+- Geen schijnkansen: onhaalbaar wordt eerlijk maar menselijk uitgelegd.
+- Marktinzicht blijft werken met percentages: 100% = perfecte match.
 
 Vercel:
 Framework: Vite
 Build command: npm run build
 Output directory: dist
-
-Aanvullende patch:
-- Marktinzicht gebruikt geen labels Gemiddeld / Hoog / Zeer hoog meer.
-- Gemeentes tonen nu een percentage ATLAS Match: 100% is perfecte match.
-
-Runtime fix:
-- Blanco scherm opgelost: PieChart icoon werd gebruikt maar niet geïmporteerd.
