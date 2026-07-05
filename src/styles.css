@@ -388,3 +388,131 @@ aside nav button:first-child{display:none}
  .assistantModal.refined{max-height:95vh}
  .assistantBody.refined{max-height:42vh}
 }
+
+
+/* ATLAS NEXT 3.5 — champagne warmte, compactere bandbreedte, 5 jaar vooruit */
+:root{
+ --bg:#f5efe3;
+ --paper:#fffaf1;
+ --ink:#2b2a22;
+ --muted:#766f62;
+ --line:#eadfce;
+ --brand:#26391f;
+ --sage:#f1eadc;
+ --gold:#c2a26a;
+ --green:#43552d;
+ --green-bg:#edf1e4;
+ --yellow:#946d2c;
+ --yellow-bg:#f9ecd4;
+ --red:#8a4039;
+ --red-bg:#f5dfda;
+ --shadow:0 26px 88px rgba(65,52,29,.12);
+}
+body{
+ background:
+ radial-gradient(circle at 12% -8%,rgba(194,162,106,.18),transparent 28%),
+ radial-gradient(circle at 96% 4%,rgba(67,85,45,.10),transparent 32%),
+ linear-gradient(180deg,#fbf7ee,#f3eadc 62%,#eee3d1);
+ color:var(--ink);
+}
+aside,.simpleSide{background:rgba(255,250,241,.86);backdrop-filter:blur(18px);border-right:1px solid rgba(194,162,106,.24)}
+main{background:linear-gradient(180deg,rgba(255,250,241,.35),rgba(255,250,241,0))}
+.mark{background:linear-gradient(145deg,#2e4326,#566638);box-shadow:0 18px 44px rgba(45,62,33,.22)}
+.brand b{letter-spacing:.18em;color:var(--brand)}
+.conciergeStart,.conciergeStart.future,.conciergeStart.compact{
+ background:
+ radial-gradient(circle at 94% 10%,rgba(194,162,106,.20),transparent 32%),
+ linear-gradient(135deg,#fffaf1,#f5ecdc 80%);
+ border-color:rgba(194,162,106,.28);
+}
+.conciergeStart h3{font-family:Georgia,"Times New Roman",serif;color:var(--ink);letter-spacing:-.03em}
+.microLabel{color:#a27b3e}
+.routeCard{background:rgba(255,250,241,.78)!important;border-color:rgba(194,162,106,.22)!important}
+.routeCard:hover,.routeCard.active{background:linear-gradient(135deg,#fff8ed,#f0eadb)!important;border-color:#d4bc87!important}
+.routeCard.active svg,.routeCard svg{color:#8f6f35}
+.routeCard b{color:var(--ink)}
+.routeCard.sensitive{background:linear-gradient(135deg,#fff8ed,#f3e8d2)!important}
+.sidePrivacy,.acceptanceBanner,.trustExperience>div,.toneCard{
+ background:linear-gradient(135deg,#fffaf1,#f6eddd);
+ border-color:rgba(194,162,106,.28);
+}
+.sideAssist,.assistantFloat,.mentorPrimary,.heroSearch button,.nextActions button,.rangeAdvisor.compact35 button,.livePanel button,.insightCard button,.rowAction{
+ background:linear-gradient(135deg,#26391f,#526335)!important;
+ color:#fff!important;
+ box-shadow:0 18px 52px rgba(38,57,31,.22)!important;
+}
+.journeyFlow,.formPanel,.livePassport,.shareFacts,.doc,.vaultTop,.livePanel,.woningDocs,.chatShell,.marketHero,.agentPassport,.agentSide,.propertyDetail,.passportNarrative{
+ background:rgba(255,250,241,.88);
+ border-color:rgba(194,162,106,.22);
+}
+.wizardTabs button,.choice,.toggle,.field div,.fundaSearch,.placeChips span{
+ background:rgba(255,250,241,.88);
+ border-color:rgba(194,162,106,.24);
+}
+.wizardTabs button.active,.flowDots.calm button.active,.choice.active,.toggle.on,.placeChips span{
+ background:linear-gradient(135deg,#f3eadc,#e9dec9);
+ color:var(--brand);
+ border-color:#d2ba83;
+}
+.flowDots button.active,.flowDots.calm button.active{background:#26391f!important;color:#fff!important;border-color:#26391f!important}
+.flowDots.calm button.done strong{background:#efe4cf;color:#7b6132}
+.routeBadge,.routeBadge.sensitive,.routeBadge.starter,.routeBadge.zzp{background:#f5ecdc;border-color:rgba(194,162,106,.35)}
+.serviceOrb,.scoreOrb,.passportCardPro{background:linear-gradient(160deg,#26391f,#536333)!important;box-shadow:0 28px 78px rgba(38,57,31,.24)}
+.heroModes span{background:#f7ecdb;border-color:#ead7b9;color:#5c4c32}
+.rangeAdvisor.compact35{
+ display:grid;
+ grid-template-columns:170px minmax(0,1fr) auto;
+ gap:14px;
+ align-items:center;
+ padding:18px 20px;
+ margin:10px 0 20px;
+ border-radius:24px;
+ background:
+ radial-gradient(circle at 92% 10%,rgba(194,162,106,.16),transparent 30%),
+ linear-gradient(135deg,#fffaf1,#f3eadc);
+ border:1px solid rgba(194,162,106,.30);
+ box-shadow:0 18px 56px rgba(65,52,29,.09);
+}
+.rangeAdvisor.compact35>div{display:block}
+.rangeAdvisor.compact35 .rangeTitle{display:flex;align-items:center;gap:10px}
+.rangeAdvisor.compact35 .rangeTitle svg{color:#9c7a3a;flex:0 0 auto}
+.rangeAdvisor.compact35 .rangeTitle b{font-size:18px;color:var(--ink);letter-spacing:.02em}
+.rangeStats{
+ display:grid!important;
+ grid-template-columns:1fr 1fr 1.25fr;
+ gap:16px;
+ align-items:center;
+}
+.rangeStats>div{padding-left:16px;border-left:1px solid rgba(194,162,106,.32)}
+.rangeStats span{display:block;color:var(--muted);font-size:13px;line-height:1.35;font-weight:760}
+.rangeStats strong{display:block;margin-top:4px;color:var(--brand);font-size:24px;letter-spacing:-.03em}
+.rangeStats .rangeNote span{font-size:13px;max-width:260px}
+.rangeStats .rangeNote small{display:block;margin-top:5px;color:#9b7e49;font-weight:900}
+.rangeAdvisor.compact35 button{
+ white-space:nowrap;
+ padding:13px 18px;
+ border-radius:17px;
+}
+.assistantModal.refined,.assistantModal.concierge{
+ background:
+ radial-gradient(circle at 90% 10%,rgba(194,162,106,.18),transparent 31%),
+ linear-gradient(180deg,#fffaf1,#f3eadc);
+ border-color:rgba(194,162,106,.30);
+}
+.assistantBody.refined,.assistantBody{
+ background:rgba(255,250,241,.82);
+ border-color:rgba(194,162,106,.22);
+}
+.bubble{box-shadow:0 8px 28px rgba(65,52,29,.06)}
+.bubble.atlas{background:#f4ead8;color:#2f3d26}
+.bubble.user{background:#26391f;color:#fff}
+.matchPercent.strong{background:#e8ecd9;color:#3e552b}
+.matchPercent.mid{background:#f3ead6;color:#7a5c25}
+.matchPercent.low{background:#f0dcd8;color:#824039}
+.livePassport strong,.livePanel strong,.serviceOrb strong,.scoreOrb strong{color:inherit}
+@media(max-width:1180px){
+ .rangeAdvisor.compact35{grid-template-columns:1fr}
+ .rangeStats{grid-template-columns:1fr!important}
+ .rangeStats>div{padding-left:0;border-left:0;border-top:1px solid rgba(194,162,106,.28);padding-top:10px}
+ .rangeAdvisor.compact35 button{width:100%;justify-content:center}
+}

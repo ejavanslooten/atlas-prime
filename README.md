@@ -1,33 +1,28 @@
-# ATLAS NEXT 3.4
+# ATLAS NEXT 3.5
 
-Gebouwd op NEXT 3.3.
+Gebouwd op NEXT 3.4.
 
-Kernrichting:
-Minder menu. Meer begeleiding. Minder formulier. Meer vertrouwen.
+Kern:
+ATLAS voelt rustiger aan de voorkant, maar denkt dieper mee op de achtergrond.
 
-Nieuw:
-- Linker menu sterk vereenvoudigd.
-- Knop “+ Nieuwe koper” verwijderd.
-- Geen dubbele navigatie meer links én boven.
-- Linkerzijde is nu alleen ontvangst, routekeuze, privacy en assistent.
-- “Gezin” vervangen door dynamische taal:
-  - Starter alleenstaand: Woonsituatie
+Nieuw in 3.5:
+- Warmere champagne-kleurstelling met ivoor, zand, champagne en diep groen.
+- Linker menu behouden omdat deze richting sterker voelt.
+- “Zonder oordeel”, “rustig”, “discreet” en “persoonlijk” subtiel verweven in copy en UI.
+- Route “Financiële ruimte verkennen” subtieler gemaakt als “Rustig financieel overzicht”.
+- Starter en gevoelige situaties krijgen geen confronterende “Gezin”-taal meer:
+  - Starter: Leefsituatie
   - Weduwe/weduwnaar: Jouw situatie
   - Gescheiden: Nieuwe situatie
   - Overig: Huishouden
-- Volgende-stap knoppen gebruiken dezelfde dynamische taal.
-- Stapindicator rustiger gemaakt: geen harde vinkjes/checklist-gevoel meer.
-- Assistent-chat technisch verbeterd:
-  - chat scrollt automatisch naar nieuwste bericht
-  - tekstbubbles groeien beter mee
-  - langere antwoorden blijven binnen het venster
-  - meer verticale ruimte en betere leesbaarheid
-- Privacy eerder zichtbaar in de route.
-- Marktinzicht bevat uitleg bij matchpercentages:
-  - 90–100% sterke match
-  - 75–89% kansrijk
-  - 60–74% aandacht nodig
-  - onder 60% niet als standaard match
+- ATLAS-bandbreedte / zoekrange compacter en luxer gemaakt.
+- Bandbreedte toont nu duidelijke mini-statistieken:
+  - Comfortabel zoeken tot
+  - Indicatieve bovengrens
+  - Korte uitleg, geen rare regelafbrekingen
+- Assistent voelt meer als persoonlijke begeleider / maître.
+- Chat blijft technisch verbeterd met autoscale/autoscroll en betere tekstflow.
+- Matchpercentages en privacy blijven onderdeel van de basis.
 
 Vercel:
 Framework: Vite
