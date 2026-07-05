@@ -516,3 +516,133 @@ main{background:linear-gradient(180deg,rgba(255,250,241,.35),rgba(255,250,241,0)
  .rangeStats>div{padding-left:0;border-left:0;border-top:1px solid rgba(194,162,106,.28);padding-top:10px}
  .rangeAdvisor.compact35 button{width:100%;justify-content:center}
 }
+
+
+/* ATLAS NEXT 3.6 — bewijs vóór score, bandbreedte strak en geen schijnzekerheid */
+.rangeCard36{
+ display:grid;
+ gap:14px;
+ padding:18px 20px;
+ margin:10px 0 20px;
+ border-radius:24px;
+ background:
+  radial-gradient(circle at 96% 10%,rgba(194,162,106,.14),transparent 30%),
+  linear-gradient(135deg,#fffaf1,#f5ecdc);
+ border:1px solid rgba(194,162,106,.30);
+ box-shadow:0 18px 56px rgba(65,52,29,.09);
+ overflow:hidden;
+}
+.rangeHeader36{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:16px;
+ border-bottom:1px solid rgba(194,162,106,.24);
+ padding-bottom:12px;
+}
+.rangeHeader36>div{display:flex;align-items:center;gap:10px;color:var(--brand)}
+.rangeHeader36 svg{color:#9c7a3a}
+.rangeHeader36 span{font-size:18px;font-weight:950;letter-spacing:.02em;color:var(--ink)}
+.rangeHeader36 button{
+ flex:0 0 auto;
+ padding:11px 16px!important;
+ border-radius:16px!important;
+ background:linear-gradient(135deg,#26391f,#526335)!important;
+ color:#fff!important;
+ box-shadow:0 14px 38px rgba(38,57,31,.20)!important;
+ white-space:nowrap;
+}
+.rangeContent36{
+ display:grid;
+ grid-template-columns:1fr 1fr minmax(220px,1.25fr);
+ gap:14px;
+ align-items:stretch;
+}
+.rangeValue36,.rangeCopy36{
+ background:rgba(255,250,241,.74);
+ border:1px solid rgba(194,162,106,.22);
+ border-radius:18px;
+ padding:14px 15px;
+ min-width:0;
+}
+.rangeValue36 small{
+ display:block;
+ color:var(--muted);
+ font-weight:850;
+ font-size:12.5px;
+ margin-bottom:5px;
+}
+.rangeValue36 strong{
+ display:block;
+ color:var(--brand);
+ font-size:26px;
+ letter-spacing:-.04em;
+ line-height:1.05;
+}
+.rangeCopy36 p{
+ margin:0;
+ color:var(--ink);
+ font-weight:780;
+ line-height:1.35;
+ font-size:13.5px;
+}
+.rangeCopy36 em{
+ display:block;
+ margin-top:7px;
+ color:#9b7e49;
+ font-style:normal;
+ font-weight:900;
+ font-size:12px;
+}
+.livePanel.provisional{
+ background:linear-gradient(180deg,#fffaf1,#f6ecd9);
+ border-color:rgba(194,162,106,.34);
+}
+.livePanel.provisional h3::after{
+ content:" · nog te controleren";
+ color:#9b7e49;
+ font-size:13px;
+ font-weight:850;
+}
+.resultStatus{
+ display:flex;
+ gap:12px;
+ align-items:flex-start;
+ border-radius:22px;
+ padding:15px 16px;
+ margin:0 0 16px;
+ border:1px solid rgba(194,162,106,.28);
+}
+.resultStatus svg{flex:0 0 auto;color:var(--brand)}
+.resultStatus b{display:block;color:var(--brand);font-size:18px;margin-bottom:3px}
+.resultStatus p{margin:0;color:var(--muted);font-weight:760;line-height:1.42}
+.resultStatus.provisional{
+ background:linear-gradient(135deg,#fff5e5,#f8ead0);
+}
+.resultStatus.verified{
+ background:linear-gradient(135deg,#edf1e4,#fffaf1);
+}
+.journeyFlow .flowDots button[title="Documenten"]{
+ border-color:rgba(194,162,106,.45);
+}
+.journeyFlow .flowDots button[title="Documenten"].active{
+ background:#8d6f36!important;
+ border-color:#8d6f36!important;
+ color:#fff!important;
+}
+.proofRule{
+ display:flex;
+ gap:10px;
+ align-items:flex-start;
+ background:#fff8eb;
+ border:1px solid rgba(194,162,106,.30);
+ border-radius:18px;
+ padding:12px 14px;
+ color:var(--brand);
+ font-weight:850;
+}
+@media(max-width:1180px){
+ .rangeContent36{grid-template-columns:1fr}
+ .rangeHeader36{align-items:flex-start;flex-direction:column}
+ .rangeHeader36 button{width:100%;justify-content:center}
+}
