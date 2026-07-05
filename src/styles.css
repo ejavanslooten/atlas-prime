@@ -346,3 +346,45 @@ aside nav button:first-child{display:none}
  .mentorPanel{right:16px;bottom:130px}
  .serviceOrb strong{font-size:72px}
 }
+
+
+/* ATLAS NEXT 3.4 — minder menu, meer begeleiding */
+.simpleSide{padding:22px 18px;overflow:auto}
+.simpleSide .brand{margin-bottom:18px}
+.simpleSide .newBuyer,.simpleSide nav,.simpleSide .progressList,.newBuyer{display:none!important}
+.conciergeStart.compact{padding:18px;margin-bottom:12px}
+.conciergeStart.compact h3{font-size:21px;line-height:1.12}
+.conciergeStart.compact p{font-size:13.5px}
+.routeCards.compact{gap:8px;margin-bottom:12px}
+.routeCards.compact .routeCard{padding:12px!important;border-radius:18px!important}
+.routeCards.compact .routeCard small{font-size:12px}
+.sidePrivacy{display:grid;grid-template-columns:22px 1fr;gap:9px;align-items:start;background:#fffdf8;border:1px solid rgba(199,171,114,.28);border-radius:18px;padding:12px;margin:10px 0;color:var(--brand)}
+.sidePrivacy p{margin:0;color:#4f6359;font-weight:800;font-size:12.5px;line-height:1.35}
+.sideAssist{width:100%;display:grid!important;grid-template-columns:22px 1fr;gap:10px;align-items:center;background:linear-gradient(135deg,#103d35,#1f6b5b)!important;color:white!important;border-radius:20px!important;margin-top:10px;box-shadow:0 18px 50px rgba(16,61,53,.20)!important;text-align:left!important}
+.sideAssist b{display:block;font-size:14px}
+.sideAssist small{display:block;color:#dceee8;font-size:12px;margin-top:2px}
+.stepIntro{margin:0 0 16px;color:var(--muted);font-weight:760;line-height:1.45}
+.acceptanceBanner small{display:block;margin-top:7px;color:#8b7452;font-weight:850}
+.flowDots.calm{gap:8px;padding-top:14px;scrollbar-width:none}
+.flowDots.calm button{display:flex;align-items:center;gap:7px;padding:8px 11px;background:#fff;border:1px solid var(--line);color:var(--muted)}
+.flowDots.calm button strong{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#eef3ef;color:var(--brand);font-size:11px}
+.flowDots.calm button.done{background:#f7f8f3;color:var(--muted)}
+.flowDots.calm button.done strong{background:#dfeee5;color:#1f6b4e}
+.flowDots.calm button.active{background:var(--brand);color:white;border-color:var(--brand)}
+.flowDots.calm button.active strong{background:rgba(255,255,255,.18);color:white}
+.flowDots.calm button span{margin-left:0}
+.assistantModal.refined{width:min(900px,100%);max-height:92vh;display:flex;flex-direction:column}
+.assistantBody.refined{max-height:46vh;min-height:250px;overflow:auto;align-content:start;scroll-behavior:smooth;padding:18px}
+.bubble{width:fit-content;max-width:min(92%,680px);white-space:normal;overflow-wrap:anywhere;word-break:normal}
+.bubble.atlas{justify-self:start}
+.bubble.user{justify-self:end}
+.assistChoices.refined{grid-template-columns:repeat(2,minmax(0,1fr));flex:0 0 auto}
+.assistChoices.refined button{white-space:normal;line-height:1.25;min-height:48px}
+.matchLegend{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 14px}
+.matchLegend span{background:#fff;border:1px solid var(--line);border-radius:18px;padding:11px 12px;color:var(--muted);font-weight:850;font-size:13px}
+.matchLegend b{display:block;color:var(--brand);font-size:15px;margin-bottom:2px}
+@media(max-width:1100px){
+ .matchLegend,.assistChoices.refined{grid-template-columns:1fr}
+ .assistantModal.refined{max-height:95vh}
+ .assistantBody.refined{max-height:42vh}
+}
