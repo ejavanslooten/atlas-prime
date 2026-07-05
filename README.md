@@ -1,37 +1,32 @@
-# ATLAS NEXT 3.6
+# ATLAS NEXT 3.7
 
-Gebouwd op NEXT 3.5.
+Gebouwd op NEXT 3.6.
 
-Kerncorrectie:
-ATLAS claimt geen betrouwbaarheid voordat de onderbouwing er is.
+Kern:
+Route-intelligentie, dataconsistentie en ATLAS Private.
 
-Nieuw in 3.6:
-- Documenten komen eerder in de kooproute.
-- Nieuwe volgorde:
-  1. Persoonlijk
-  2. Leefsituatie / Jouw situatie / Nieuwe situatie / Huishouden
-  3. Werk & inkomen
-  4. Financiën
-  5. Documenten
-  6. Woonwensen
-  7. Resultaat
-  8. Adviesprofiel
-  9. Marktinzicht
-  10. Woningmatches
-  11. ATLAS Paspoort
-  12. Makelaarview
-- Voor documenten wordt geen definitieve ATLAS Score geclaimd.
-- Score vóór documentcontrole heet nu “Voorlopige kooppositie”.
-- Live effect toont “Voorlopige positie” zolang documenten nog onvoldoende zijn.
-- Resultaat intake toont duidelijk of de score onderbouwd of voorlopig is.
-- Woningmatches en paspoort sturen terug naar documenten als er nog geen onderbouwing is.
-- ATLAS-bandbreedte blok opnieuw opgebouwd:
-  - geen overlap meer
-  - knop staat los van de inhoud
-  - twee duidelijke kernbedragen
-  - korte toelichting zonder rare regelafbreking
-- Champagne/premium richting blijft behouden.
-- Productregel toegevoegd: geen schijnzekerheid.
+Nieuw:
+- ATLAS Private toegevoegd als aparte routekaart links.
+- ATLAS Private is gepositioneerd als discrete route voor hogere segmenten, complexe vermogensposities en zorgvuldige begeleiding.
+- Private route bevat:
+  - hogere-segment woonpositie
+  - vermogen / portefeuille
+  - holding-, dividend- of management fee bewijs
+  - herkomst eigen middelen
+  - discretie- en deelinstellingen
+- Starterroute verder opgeschoond:
+  - geen overwaarde-kaart bij starters
+  - geen eigen-woning-data in starter route
+  - makelaarview toont bij starters financiële basis / eigen middelen in plaats van overwaarde
+- Makelaarview is nu route-afhankelijk:
+  - Starter: inkomen, eigen middelen, documentstatus, woningmatch
+  - Doorstromer: overwaarde, huidige woning, woningwaarde, documentstatus
+  - Ondernemer/ZZP: bewijs inkomen en documenten
+  - Private: vermogenspositie, discretie en private documenten
+- Documenten blijven vóór score/resultaat in de route.
+- Bewijs-vóór-score blijft de harde productregel.
+- Live effect gebruikt voorlopige status zolang documenten niet voldoende zijn.
+- ATLAS-bandbreedte blijft in de strakkere 3.6-vorm.
 
 Vercel:
 Framework: Vite
